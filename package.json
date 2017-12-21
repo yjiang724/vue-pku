@@ -1,8 +1,8 @@
 {
   "name": "vue-pku",
   "description": "A Vue.js project",
-  "version": "0.0.2",
-  "author": "JIANG Yu <nathanpro@pku.edu.cn>",
+  "version": "0.0.3",
+  "author": "JIANG Yu <look@jiangyu.me>",
   "license": "MIT",
   "private": false,
   "main": "dist/vue-pku.js",
