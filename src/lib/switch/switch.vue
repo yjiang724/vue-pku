@@ -17,9 +17,13 @@
 export default {
   name: 'pkuSwitch',
   props: {
+    value: {
+      type: Boolean,
+      default: true
+    },
     ableText: {
       type: String,
-      default: '开'
+      default: ''
     },
     disableText: {
       type: String,
@@ -49,12 +53,13 @@ export default {
   },
   data () {
     return {
-      on: false
+      on: this.value
     }
   },
   methods: {
     onSwitch () {
       this.on = !this.on
+      this.$emit('callback', this.on)
     }
   }
 }
@@ -84,7 +89,7 @@ export default {
   font-weight: 500;
   cursor: pointer;
   vertical-align: middle;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 .switch_core {
   margin: 0;

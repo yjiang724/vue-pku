@@ -1,14 +1,22 @@
 # vue-pku
+> vue-pku for vue.js, built in with PKU style compontents..
 
-vue-pku is an ui components library base on VueJS that helps you build your web application in pku style
-
-# Document & Demo
+vue-pku is an ui components library base on vuejs and awsome font , which helps you build your web application in pku style.
+[Preview](http:pkue.jiangyu.me)｜[中文文档](http:pkue.jiangyu.me)
 
 # Installation
-
-# Development
+## NPM
+```
+npm install vue-pku
+```
 
 # Version
+- 0.0.3 beta
+    - add compontents
+        - breadcrumb
+        - button
+        - checkbox
+        - switch
 - 0.0.2 beta
 
 # Copyright and License

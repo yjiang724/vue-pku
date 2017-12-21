@@ -1,0 +1,60 @@
+<template>
+  <div class='breadcrumb'>
+    <div v-for="(item, $index) in value" :class="{'active': $index === value.length - 1, 'separator': separator === 'arrow'}">{{item}}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'pkuBreadcrumb',
+  props: {
+    separator: {
+      type: String,
+      default: 'line'
+    },
+    value: {
+      type: Array,
+      default () {
+          return ['首页', '子页面一', '子页面二']
+      }
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.breadcrumb {
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 1.5rem;
+  font-weight: 400;
+  color: #5a5e66;
+}
+.breadcrumb > div {
+  display: inline-block;
+  transition: color .2s cubic-bezier(.645,.045,.355,1);
+}
+.breadcrumb > div:hover {
+  color: #0091EA;
+  cursor: text;
+}
+.breadcrumb > div.active {
+  font-weight: 700;
+  color: #2d2f33;
+  cursor: text;
+}
+.breadcrumb > div + div::before{
+  margin: 0 9px;
+  font-weight: 500;
+  color: #b4bccc;
+  content: "/";
+}
+.breadcrumb > div + .separator::before{
+  margin: 0 9px;
+  font-weight: 500;
+  color: #b4bccc;
+  content: ">";
+}
+</style>

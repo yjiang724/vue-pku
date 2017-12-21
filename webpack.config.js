@@ -62,7 +62,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: 'dist/*',
-        to: path.resolve(__dirname, '..', 'donCheck/node_modules/vue-pku/'),
+        to: path.resolve(__dirname, '..', 'pkue/node_modules/vue-pku/'),
         force: true
       }
     ], {

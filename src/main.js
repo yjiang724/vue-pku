@@ -1,10 +1,15 @@
 import Vue from 'vue'
+
 import Button from './lib/button'
 import Headbar from './lib/headbar'
 import Switch from './lib/switch'
+import Breadcrumb from './lib/breadcrumb'
+import Checkbox from './lib/checkbox'
 
 const components = [
+  Breadcrumb,
   Button,
+  Checkbox,
   Headbar,
   Switch
 ]
@@ -23,12 +28,14 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-export { Button, Headbar, Switch }
+export { Breadcrumb, Button, Checkbox, Headbar, Switch }
 
 export default {
   version: '0.0.1',
   install,
+  Breadcrumb,
   Button,
+  Checkbox,
   Headbar,
   Switch
 }
