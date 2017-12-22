@@ -3,7 +3,7 @@
 
 vue-pku is an ui components library base on vuejs and awsome font , which helps you build your web application in pku style.
 
-[Preview](http:pkue.jiangyu.me)｜[中文文档](http:pkue.jiangyu.me)
+[Preview](http://pkue.jiangyu.me)｜[中文文档](http://pkue.jiangyu.me)
 
 ## Installation
 ### NPM (Recommended)

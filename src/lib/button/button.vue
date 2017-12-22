@@ -67,7 +67,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '/static/font-awesome/css/font-awesome.css';
+@import '/static/font-awesome/css/font-awesome.min.css';
 
 .btn {
   display: inline-block;
