@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.1.0 beta 12/22/2017
+    - add compontents
+        - $alert
+        - $confirm
 - 0.0.3 beta 12/21/2017
     - add compontents
         - breadcrumb

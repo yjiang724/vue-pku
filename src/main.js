@@ -1,10 +1,12 @@
 import Vue from 'vue'
-
 import Button from './lib/button'
 import Headbar from './lib/headbar'
 import Switch from './lib/switch'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
+import Messagebox from './lib/messagebox'
+// Vue.use(Alert)
+// Vue.prototype.$alert = $alert
 
 const components = [
   Breadcrumb,
@@ -20,6 +22,9 @@ const install = function(Vue, opts = {}) {
   components.map(component => {
     Vue.component(component.name, component)
   })
+
+  Vue.prototype.$alert = Messagebox.alert
+  Vue.prototype.$confirm = Messagebox.confirm
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
