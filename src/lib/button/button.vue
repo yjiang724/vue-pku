@@ -159,7 +159,7 @@ export default {
 .btn-file-label {
   display: inline-block;
   position: absolute;
-  left: 9rem;
+  left: 180px;
   color: #5a5e66;
   padding: 0 10px;
   line-height: 20px;

@@ -1,18 +1,18 @@
 import Vue from 'vue'
+import Banner from './lib/banner'
 import Button from './lib/button'
-import Headbar from './lib/headbar'
-import Switch from './lib/switch'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Messagebox from './lib/messagebox'
-// Vue.use(Alert)
-// Vue.prototype.$alert = $alert
+import Select from './lib/select'
+import Switch from './lib/switch'
 
 const components = [
+  Banner,
   Breadcrumb,
   Button,
   Checkbox,
-  Headbar,
+  Select,
   Switch
 ]
 
@@ -33,14 +33,22 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-export { Breadcrumb, Button, Checkbox, Headbar, Switch }
+export { 
+  Banner,
+  Breadcrumb,
+  Button,
+  Checkbox,
+  Select,
+  Switch
+}
 
 export default {
   version: '0.0.1',
   install,
+  Banner,
   Breadcrumb,
   Button,
   Checkbox,
-  Headbar,
+  Select,
   Switch
 }

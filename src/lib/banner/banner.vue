@@ -1,5 +1,5 @@
 <template>
-  <section class="headbar">
+  <section class="banner">
     <div class="topLine">
       <ul class="">
         <li><a href="https://portal.pku.edu.cn/portal2013/" target="_blank">门户</a></li>
@@ -7,7 +7,7 @@
         <li><a href="http://mail.pku.edu.cn/" target="_blank">邮箱</a></li>
         <li><a href="http://bbs.pku.edu.cn/" target="_blank">BBS</a></li>
         <li><a href="http://www.lib.pku.edu.cn/portal/" target="_blank">图书馆</a></li>
-        <li><span>欢迎您！</span> <span>{{ userName }}</span></li>
+        <li><span>欢迎您！</span> <span>{{ user }}</span></li>
       </ul>
     </div>
     <nav class="nav">
@@ -15,7 +15,7 @@
         <img :src="logo" v-if="logo.length > 0">
       </div>
       <div class="nav-center">
-        <span>中国社会科学调查中心</span>
+        <span>{{ title }}</span>
       </div>
     </nav>
   </section>
@@ -23,11 +23,15 @@
 
 <script>
 export default {
-  name: 'pkuHeadbar',
+  name: 'pkuBanner',
   props: {
-    userName: {
+    user: {
       type: String,
-      default: 'userName'
+      default: ''
+    },
+    title: {
+      type: String,
+      default: '标题'
     },
     logo: {
       type: String,
@@ -39,58 +43,55 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.headbar {
-    color: #ffffff;
+.banner {
+  color: #ffffff;
 }
 .topLine {
-    padding: 0.3rem 0;
-    font-size: 0.7rem;
-    background-color: #700005;
-    display: flex;
-    justify-content: flex-end;
-    height: 1rem;
-    max-height: 1rem;
-}
-.nav {
-    background-color: #8f000b;
-    padding: 1rem 1.2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 3.5rem;
-    max-height: 3.5rem;
-}
-.nav-left {
-}
-.nav-center {
-    font-size: 1.8rem;
-    padding: 0 1rem 0 1rem;
-    letter-spacing: 0.2rem;
-}
-.nav-right {
-    font-size: 0.7rem;
-    flex-basis: 8rem;
+  padding: 6px 0;
+  font-size: 14px;
+  background-color: #700005;
+  display: flex;
+  justify-content: flex-end;
+  height: 20px;
+  max-height: 20px;
 }
 .topLine ul {
   text-align: right;
   list-style-type: none;
-  flex-basis: 30rem;
+  flex-basis: 600px;
   align-self: center;
-  padding-right: 2rem;
+  padding-right: 30px;
 }
 .topLine li {
   display: inline-block;
-  padding: 0 0.2rem;
+  padding: 0 4px;
 }
 .topLine li:nth-child(-n+5)::after {
-  padding-left: 0.5rem;
+  padding-left: 10px;
   content: "|";
   color: #700005;
   border-right: 1px solid #fff;
 }
+
+.nav {
+  background-color: #8f000b;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  max-height: 70px;
+}
+.nav-left {
+}
+.nav-center {
+  font-size: 36px;
+  padding: 0 36px;
+  letter-spacing: 4px;
+}
 li a {
-    color: #ffffff;
-    text-decoration: blink;
+  color: #ffffff;
+  text-decoration: none;
 }
 </style>

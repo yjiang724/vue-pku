@@ -28,8 +28,8 @@ const defaultCallback = action => {
 }
 
 const defaults = {
-  submitButtonText: 'OK',
-  closeButtonText: 'NO'
+  submitButtonText: 'SUBMIT',
+  closeButtonText: 'CLOSE'
 }
 
 const initInstance = () => {

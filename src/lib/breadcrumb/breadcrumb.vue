@@ -28,7 +28,7 @@ export default {
   text-align: left;
   padding: 10px 20px;
   font-size: 14px;
-  line-height: 1.5rem;
+  line-height: 30px;
   font-weight: 400;
   color: #5a5e66;
 }

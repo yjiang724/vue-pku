@@ -92,24 +92,24 @@ export default {
   z-index: 4;
 }
 .alert-wrapper {
-  width: 24rem;
-  height: 8rem;
+  width: 480px;
+  height: 160px;
   background-color: #ffffff;
   position: absolute;
-  left: calc(50% - 12rem);
-  top: calc(50% - 4rem);
+  left: calc(50% - 240px);
+  top: calc(50% - 80px);
   color: #2d2f33;
   border-radius: 4px;
   border: 1px solid #e6ebf5;
   font-size: 18px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
 }
 .alert-header {
   padding: 0;
   margin-bottom: 0;
   font-size: 18px;
-  line-height: 1.6rem;
+  line-height: 32px;
   color: #2d2f33;
   text-align: left;
 }
@@ -118,6 +118,7 @@ export default {
 }
 .alert-close {
   float: right;
+  background: transparent;
   border: none;
   cursor: pointer;
   outline: none;
@@ -132,7 +133,7 @@ export default {
   color: #5a5e66;
   font-size: 14px;
   text-align: left;
-  padding: 3rem 0 0.5rem;
+  padding: 60px 0 10px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   top: 0;
@@ -141,13 +142,12 @@ export default {
 }
 .alert-button-group {
   position: absolute;
-  bottom: 0.5rem;
-  right: 1rem;
+  bottom: 10px;
+  right: 20px;
 }
 .alert-button-group button {
   min-width: 40px;
 }
-
 
 .btn {
   display: inline-block;
