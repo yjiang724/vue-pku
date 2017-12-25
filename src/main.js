@@ -4,16 +4,20 @@ import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Messagebox from './lib/messagebox'
+import Pagination from './lib/pagination'
 import Select from './lib/select'
 import Switch from './lib/switch'
+import Table from './lib/table'
 
 const components = [
   Banner,
   Breadcrumb,
   Button,
   Checkbox,
+  Pagination,
   Select,
-  Switch
+  Switch,
+  Table
 ]
 
 const install = function(Vue, opts = {}) {
@@ -38,8 +42,10 @@ export {
   Breadcrumb,
   Button,
   Checkbox,
+  Pagination,
   Select,
-  Switch
+  Switch,
+  Table
 }
 
 export default {
@@ -49,6 +55,8 @@ export default {
   Breadcrumb,
   Button,
   Checkbox,
+  Pagination,
   Select,
-  Switch
+  Switch,
+  Table
 }

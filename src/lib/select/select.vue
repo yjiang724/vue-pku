@@ -70,7 +70,7 @@ export default {
   line-height: 20px;
   min-width: 10rem;
   min-height: 34px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

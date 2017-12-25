@@ -5,7 +5,7 @@
     <i class="fa" :class="awicon" v-if="icon !== ''"><span>{{value}}</span></i>
     <span v-else>{{value}}</span>
   </button>
-  <button class="btn" :disabled="disabled == true" v-else>
+  <button class="btn" @click="onClick" :disabled="disabled == true" v-else>
     <i class="fa" :class="awicon" v-if="icon !== ''"><span>{{value}}</span></i>
     <span v-else>{{value}}</span>
   </button>
@@ -60,6 +60,9 @@ export default {
         evt = evt.parentNode
       }
       evt.firstElementChild.click()
+    },
+    onClick () {
+      this.$emit('callback')
     }
   }
 }

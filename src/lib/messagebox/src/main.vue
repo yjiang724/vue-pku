@@ -68,6 +68,7 @@ export default {
     },
     onSubmit () {
       this.callback()
+      this.show = false
     },
     onClose (flag) {
       this.show = false

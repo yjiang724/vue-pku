@@ -20,6 +20,16 @@ Vue.use(pkue)
 ```
 
 # Version
+- ready to do
+    - 左右组件height =》 40px
+    - props 怎么传 Number, Array ( key=val / :key="val")
+- 0.3.0 beta 12/25/2017
+    - merry christmas! welcome to www.jiangyu.me!
+    - add compontents
+        - table
+        - pagination
+    - modify compontent \<button\>
+        - add `callback` Event in unfile type button
 - 0.2.0 beta 12/23/2017
     - add compontents
         - select

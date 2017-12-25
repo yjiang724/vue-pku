@@ -15,7 +15,7 @@ export default {
     value: {
       type: Array,
       default () {
-          return ['首页', '子页面一', '子页面二']
+        return ['首页', '子页面一', '子页面二']
       }
     }
   }
@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .breadcrumb {
   text-align: left;
-  padding: 10px 20px;
+  padding: 20px 40px;
   font-size: 14px;
   line-height: 30px;
   font-weight: 400;
