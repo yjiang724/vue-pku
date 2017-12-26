@@ -11,7 +11,7 @@ const defaultCallback = action => {
   if (currentMsg) {
     let callback = currentMsg.callback;
     if (typeof callback === 'function') {
-      callback()
+      callback(action)
     }
     // if (currentMsg.resolve) {
     //   if (action === 'confirm') {
@@ -42,7 +42,7 @@ const initInstance = () => {
   
 const showNextMsg = () => {
   if (!instance) {
-      initInstance();
+    initInstance();
   }
   instance.action = ''
   currentMsg = msgQueue.shift()
@@ -55,7 +55,6 @@ const showNextMsg = () => {
   if (options.callback === undefined) {
     instance.callback = defaultCallback;
   }
-
   // let oldCb = instance.callback;
   // instance.callback = (action, instance) => {
   //   oldCb(action, instance);
@@ -117,6 +116,21 @@ MessageBox.confirm = (message, title, options) => {
   }, options.action)
 }
 
+MessageBox.text = (message, title, options) => {
+  if (typeof title === 'object') {
+    options = title;
+    title = '';
+  } else if (title === undefined) {
+    title = '';
+  }
+  return MessageBox({
+    title: title,
+    message: message,
+    closeButtonText: options.closeButtonText || defaults.closeButtonText,
+    submitButtonText: options.submitButtonText || defaults.submitButtonText,
+    text: true
+  }, options.action)
+}
 
 export default MessageBox;
 export { MessageBox };

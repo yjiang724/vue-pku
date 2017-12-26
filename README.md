@@ -20,24 +20,26 @@ Vue.use(pkue)
 ```
 
 # Version
-- ready to do
-    - 左右组件height =》 40px
-    - props 怎么传 Number, Array ( key=val / :key="val")
+- 0.4.0 beta 12/26/2017
+    - add compontent
+        - dialog
+    - update compontent `<pku-select>`
+        - watch `props.value` from vuex, bind the real time value
 - 0.3.0 beta 12/25/2017
     - merry christmas! welcome to www.jiangyu.me!
     - add compontents
         - table
         - pagination
-    - modify compontent \<button\>
+    - update compontent `<pku-button>`
         - add `callback` Event in unfile type button
 - 0.2.0 beta 12/23/2017
-    - add compontents
+    - add compontent
         - select
-    - modify length unit from `rem` to `px`
+    - update: transform length unit from `rem` to `px`
 - 0.1.0 beta 12/22/2017
     - add compontents
-        - $alert
-        - $confirm
+        - `$alert`
+        - `$confirm`
 - 0.0.3 beta 12/21/2017
     - add compontents
         - breadcrumb
@@ -45,7 +47,7 @@ Vue.use(pkue)
         - checkbox
         - switch
 - 0.0.2 beta 12/20/2017
-    - add compontents
+    - add compontent
         - banner
 - 0.0.1 beta 12/19/2017
     - init project

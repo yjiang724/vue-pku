@@ -3,6 +3,7 @@ import Banner from './lib/banner'
 import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
+import Dialog from './lib/dialog'
 import Messagebox from './lib/messagebox'
 import Pagination from './lib/pagination'
 import Select from './lib/select'
@@ -14,6 +15,7 @@ const components = [
   Breadcrumb,
   Button,
   Checkbox,
+  Dialog,
   Pagination,
   Select,
   Switch,
@@ -29,6 +31,7 @@ const install = function(Vue, opts = {}) {
 
   Vue.prototype.$alert = Messagebox.alert
   Vue.prototype.$confirm = Messagebox.confirm
+  Vue.prototype.$text = Messagebox.text
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
@@ -42,6 +45,7 @@ export {
   Breadcrumb,
   Button,
   Checkbox,
+  Dialog,
   Pagination,
   Select,
   Switch,
@@ -55,6 +59,7 @@ export default {
   Breadcrumb,
   Button,
   Checkbox,
+  Dialog,
   Pagination,
   Select,
   Switch,

@@ -14,15 +14,17 @@
             </th>
           </tr>
         </thead>
-          <transition-group 
-              name="list" 
-              tag="tbody"  
+          <transition-group
+              name="list"
+              tag="tbody"
               v-on:before-enter="beforeEnter"
               v-on:enter="enter"
               v-on:leave="leave" >
           <tr v-for="(item, $id) in currentPageData" v-bind:key="$id" v-bind:data-index="$id">
             <td v-for="val in menu" v-if="val.key === 'checkbox'">
                 <pku-checkbox value="" @callback="onCheckEventHandler($id)"></pku-checkbox>
+            <td v-else-if="val.key.toUpperCase() === 'METHOD'">
+              <span v-for="(method, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ method }}</a></span>
             <td v-else>
                 {{item[val.key]}}
             </td>
@@ -84,6 +86,10 @@ export default {
     btnGroup: {
       type: Array,
       default: () => []
+    },
+    methodGroup: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -98,6 +104,9 @@ export default {
     },
     onClickEventHandler (id) {
       this.$emit('clickEvent', id)
+    },
+    onMethodEventHandler (id, item) {
+      this.$emit('methodEvent', id, item)
     },
     renderdata (data) {
       this.currentPageData = data
@@ -179,9 +188,6 @@ export default {
     font-weight: 400;
     color: #5a5e66;
     -webkit-font-smoothing: antialiased;
-    -moz-user-select:none;
-    -webkit-user-select:none;
-    user-select:none;  
   }
   .table-wrapper {
     overflow-x: scroll;
@@ -192,6 +198,7 @@ export default {
     min-width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    text-transform: capitalize;
   }
   table th {
     width: 180px;
@@ -225,5 +232,14 @@ export default {
   }
   i.sorted {
     color: #5a5e66;
+  }
+  table a {
+    color: #8f000b;
+    cursor: pointer;
+    transition: color 300ms ease;
+    padding: 0 10px;
+  }
+  table a:hover {
+    color: #700005;
   }
 </style>

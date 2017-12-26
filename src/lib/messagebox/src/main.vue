@@ -12,7 +12,10 @@
           <button aria-label="Close" class="alert-close" @click="onClose"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="alert-content">
-          <span>{{ message }}</span>
+          <span v-if="!text">{{ message }}</span>
+          <div class="alert-input" v-else>
+            <textarea v-model="data"></textarea>
+          </div>
         </div>
         <div class="alert-button-group">
           <button class="btn btn-primary" v-if="submitButtonText" @click="onSubmit"><span>{{ submitButtonText }}</span></button>
@@ -33,7 +36,9 @@ export default {
       message: undefined,
       callback: undefined,
       closeButtonText: undefined,
-      submitButtonText: undefined
+      submitButtonText: undefined,
+      text: false,
+      data: this.message
     }
   },
   methods: {
@@ -67,7 +72,11 @@ export default {
       }, 100)
     },
     onSubmit () {
-      this.callback()
+      if (this.text) {
+        this.callback(this.data)
+      } else {
+        this.callback()
+      }
       this.show = false
     },
     onClose (flag) {
@@ -148,6 +157,20 @@ export default {
 }
 .alert-button-group button {
   min-width: 40px;
+}
+.alert-input textarea {
+  resize: none;
+  line-height: 20px;
+  border: 1px solid rgb(216, 220, 229);
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  box-shadow: rgba(17, 17, 17, 0.098) 0px 2px 3px;
+  width: 459px;
+  height: 48px;
+  max-width: 460px;
+  margin: 0px;
 }
 
 .btn {

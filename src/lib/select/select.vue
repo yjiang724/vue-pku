@@ -35,6 +35,11 @@ export default {
       show: false,
       selected: this.value
     }
+  },
+  watch: {
+    value (val) {
+      this.selected = val
+    }
   }
 }
 </script>
