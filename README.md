@@ -20,6 +20,9 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.4.1 beta 12/26/2017
+    - update compontent `<pku-messagebox>`
+        - add $text method, which contains `<textarea>`
 - 0.4.0 beta 12/26/2017
     - add compontent
         - dialog
