@@ -20,6 +20,11 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.5.0 beta 12/27/2017
+    - add compontent
+        - notice
+    - update compontent
+        - `<pku-button>`: fix the color of disabled button
 - 0.4.1 beta 12/26/2017
     - update compontent `<pku-messagebox>`
         - add $text method, which contains `<textarea>`

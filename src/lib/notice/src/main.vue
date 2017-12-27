@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="notice" v-show="show">
+    <div class="notice" v-if="show">
       <div class="notice-header">
         <div class="notice-title">{{ title }}</div>
         <button aria-label="Close" class="notice-close" @click="show = false"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
