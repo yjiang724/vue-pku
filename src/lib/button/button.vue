@@ -145,6 +145,7 @@ export default {
   cursor: not-allowed; 
 }
 .btn.btn-disabled:hover {
+  background-color: #F5F5F5;
   cursor: not-allowed; 
 }
 .btn:active {

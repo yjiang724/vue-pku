@@ -5,6 +5,7 @@ import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Dialog from './lib/dialog'
 import Messagebox from './lib/messagebox'
+import Notice from './lib/notice'
 import Pagination from './lib/pagination'
 import Select from './lib/select'
 import Switch from './lib/switch'
@@ -32,6 +33,7 @@ const install = function(Vue, opts = {}) {
   Vue.prototype.$alert = Messagebox.alert
   Vue.prototype.$confirm = Messagebox.confirm
   Vue.prototype.$text = Messagebox.text
+  Vue.prototype.$notice = Notice
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
