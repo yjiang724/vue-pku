@@ -1,7 +1,7 @@
 {
   "name": "vue-pku",
-  "description": "A Vue.js project",
-  "version": "0.5.0",
+  "description": "vue-pku for vue.js, built in with PKU style compontents.",
+  "version": "0.6.0",
   "author": "JIANG Yu <look@jiangyu.me>",
   "license": "MIT",
   "private": false,

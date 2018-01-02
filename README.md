@@ -1,5 +1,5 @@
 # vue-pku
-> vue-pku for vue.js, built in with PKU style compontents..
+> vue-pku for vue.js, built in with PKU style compontents.
 
 vue-pku is an ui components library base on vuejs and awsome font , which helps you build your web application in pku style.
 
@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.6.0 beta 1/2/2018
+    - 放假休息了3天，我又回来了！
+    - add compontent
+        - loading
 - 0.5.0 beta 12/27/2017
     - add compontent
         - notice

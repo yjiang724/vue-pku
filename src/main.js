@@ -4,6 +4,7 @@ import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Dialog from './lib/dialog'
+import Loading from './lib/loading'
 import Messagebox from './lib/messagebox'
 import Notice from './lib/notice'
 import Pagination from './lib/pagination'
@@ -17,6 +18,7 @@ const components = [
   Button,
   Checkbox,
   Dialog,
+  Loading,
   Pagination,
   Select,
   Switch,
@@ -48,6 +50,7 @@ export {
   Button,
   Checkbox,
   Dialog,
+  Loading,
   Pagination,
   Select,
   Switch,
@@ -62,6 +65,7 @@ export default {
   Button,
   Checkbox,
   Dialog,
+  Loading,
   Pagination,
   Select,
   Switch,

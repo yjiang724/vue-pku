@@ -198,7 +198,6 @@ export default {
     min-width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    text-transform: capitalize;
   }
   table th {
     width: 180px;
