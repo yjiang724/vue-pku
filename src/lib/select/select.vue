@@ -5,8 +5,13 @@
       <span class="select-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <transition name="fade">
-      <ul class="select-droplist" :class="animation" v-show="show" @click="selected = $event.target.innerText, show = !show, $emit('callback', selected)">
-        <li v-for="item in list">{{item}}</li>
+      <ul class="select-droplist" :class="animation" v-show="show" @click="onClickEventHandler">
+        <li v-for="item in list" v-bind:data-key="item[exportKey] || ''" v-if="importKey.length > 0">
+           {{ item[importKey]}}
+        </li>
+        <li v-else>
+          {{ item }}
+        </li>
       </ul>
     </transition>
   </div>
@@ -25,6 +30,14 @@ export default {
         return ['请选择']
       }
     },
+    importKey: {
+      type: String,
+      default: ''
+    },
+    exportKey: {
+      type: String,
+      default: ''
+    },
     animation: {
       type: String,
       default: 'scaleY'
@@ -39,6 +52,17 @@ export default {
   watch: {
     value (val) {
       this.selected = val
+    }
+  },
+  methods: {
+    onClickEventHandler (evt) {
+      this.selected = evt.target.innerText
+      this.show = !this.show
+      if (evt.target.dataset.key) {
+        this.$emit('callback', evt.target.dataset.key)
+      } else {
+        this.$emit('callback', this.selected)
+      }
     }
   }
 }
@@ -84,6 +108,9 @@ export default {
 }
 .select-header:hover {
   border-color: #409eff;
+}
+.select-header span {
+  padding: 0 6px;
 }
 .select-icon {
   float: right;

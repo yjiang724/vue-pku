@@ -20,6 +20,14 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.6.1 beta 1/3/2018
+    - update compontent
+        - `<pku-select>`
+            - the Attribute `list` could be an array of object
+            - add Attribute `importKey`, if `list` is array of object, `importKey` is the showed text in the object, if not, show the item of list
+            - add Attribute `exportKey`, if `list` is array of object, `exportKey` is the callback text in the object, if not, export the item of list
+        - `<pku-checkbox>`
+            -  `<pku-checkbox>` used in the `<pku-table>`, if the renderdata of `<pku-table>` changed, the checked status of `<pku-checkbox>` wouldn't changed. Now fixed!
 - 0.6.0 beta 1/2/2018
     - 放假休息了3天，我又回来了！
     - add compontent

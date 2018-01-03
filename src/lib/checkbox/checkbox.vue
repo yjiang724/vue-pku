@@ -32,6 +32,9 @@ export default {
     }
   },
   methods: {
+    unCheck () {
+      this.checked = false
+    },
     onCheck () {
       if (!this.disabled) {
         this.checked = !this.checked

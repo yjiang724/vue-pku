@@ -22,7 +22,7 @@
               v-on:leave="leave" >
           <tr v-for="(item, $id) in currentPageData" v-bind:key="$id" v-bind:data-index="$id">
             <td v-for="val in menu" v-if="val.key === 'checkbox'">
-                <pku-checkbox value="" @callback="onCheckEventHandler($id)"></pku-checkbox>
+                <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler($id)"></pku-checkbox>
             <td v-else-if="val.key.toUpperCase() === 'METHOD'">
               <span v-for="(method, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ method }}</a></span>
             <td v-else>
@@ -171,10 +171,16 @@ export default {
   watch: {
     rawdata (val) {
       this.tableData = val
+      // this.$refs.c1.childMethod(); 
     },
     tableData (val) {
       if (this.pagination === false) {
         this.currentPageData = this.tableData
+      }
+      if (this.$refs.mustUncheck) {
+        this.$refs.mustUncheck.forEach(function (item) {
+          item.unCheck()
+        })
       }
     }
   }
