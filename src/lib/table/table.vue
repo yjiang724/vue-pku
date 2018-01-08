@@ -4,14 +4,15 @@
       <table>
         <thead>
           <tr>
-            <th v-for="val in menu" v-if="val.key !== 'checkbox'">
+            <th v-if="checkbox"></th>
+            <th v-for="val in menu">
               {{val.name}}
               <span class="table-sort" @click="onSortBy($event, val.key)" data-asc="false" v-show="val.key !== 'checkbox'">
                 <i class="fa fa-sort-asc" aria-hidden="true"></i>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
               </span>
-            <th v-else>
             </th>
+            <th v-if="method">操作</th>
           </tr>
         </thead>
           <transition-group
@@ -21,12 +22,14 @@
               v-on:enter="enter"
               v-on:leave="leave" >
           <tr v-for="(item, $id) in currentPageData" v-bind:key="$id" v-bind:data-index="$id">
-            <td v-for="val in menu" v-if="val.key === 'checkbox'">
-                <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler($id)"></pku-checkbox>
-            <td v-else-if="val.key.toUpperCase() === 'METHOD'">
-              <span v-for="(method, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ method }}</a></span>
-            <td v-else>
+            <td v-if="checkbox">
+                <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler(item['id'])"></pku-checkbox>
+            </td>
+            <td v-for="(val, id) in menu">
                 {{item[val.key]}}
+            </td>
+            <td v-if="method">
+               <span v-for="(val, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ val }}</a></span>
             </td>
           </tr>
           </transition-group>
@@ -49,6 +52,14 @@
 export default {
   name: 'pkuTable',
   props: {
+    checkbox: {
+      type: Boolean,
+      default: false
+    },
+    method: {
+      type: Boolean,
+      default: false
+    },
     rawdata: {
       type: Array,
       default () {
@@ -95,18 +106,45 @@ export default {
   data () {
     return {
       currentPageData: [],
-      tableData: this.rawdata
+      tableData: this.rawdata,
+      checkboxList: '[]'
+    }
+  },
+  watch: {
+    rawdata (val) {
+      this.tableData = val
+      // this.$refs.c1.childMethod(); 
+    },
+    tableData (val) {
+      if (this.pagination === false) {
+        this.currentPageData = this.tableData
+      }
+      if (this.$refs.mustUncheck) {
+        this.$refs.mustUncheck.forEach(function (item) {
+          item.unCheck()
+        })
+      }
     }
   },
   methods: {
     onCheckEventHandler (id) {
-      this.$emit('checkEvent', id)
+      let tmp = JSON.parse(this.checkboxList)
+      if (tmp.indexOf(id) === -1) {
+        tmp.push(id)
+        this.checkboxList = JSON.stringify(tmp)
+      } else {
+        tmp.splice(tmp.indexOf(id), 1)
+        this.checkboxList = JSON.stringify(tmp)
+      }
+      this.$emit('checkEvent', tmp)
     },
     onClickEventHandler (id) {
-      this.$emit('clickEvent', id)
+      let checkboxList = this.checkboxList
+      this.$emit('clickEvent', { id, checkboxList })
+      this.checkboxList = '[]'
     },
     onMethodEventHandler (id, item) {
-      this.$emit('methodEvent', id, item)
+      this.$emit('methodEvent', id, item, this.checkboxList)
     },
     renderdata (data) {
       this.currentPageData = data
@@ -166,22 +204,6 @@ export default {
         el.style.color = '#ffffff'
       }, delay)
       done()
-    }
-  },
-  watch: {
-    rawdata (val) {
-      this.tableData = val
-      // this.$refs.c1.childMethod(); 
-    },
-    tableData (val) {
-      if (this.pagination === false) {
-        this.currentPageData = this.tableData
-      }
-      if (this.$refs.mustUncheck) {
-        this.$refs.mustUncheck.forEach(function (item) {
-          item.unCheck()
-        })
-      }
     }
   }
 }

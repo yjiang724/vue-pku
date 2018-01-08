@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.6.2 beta 1/8/2018
+    - update compontent
+        - `<pku-notice>`
+            - 每次调用 `this.$notice` 时会额外产生全新的 dom 节点，并且关闭 `notice` 时，节点的高度会自适应调整
 - 0.6.1 beta 1/3/2018
     - update compontent
         - `<pku-select>`

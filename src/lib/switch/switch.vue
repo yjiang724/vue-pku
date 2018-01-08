@@ -56,6 +56,11 @@ export default {
       on: this.value
     }
   },
+  watch: {
+    value (val) {
+      this.on = this.val
+    }
+  },
   methods: {
     onSwitch () {
       this.on = !this.on
@@ -71,7 +76,7 @@ export default {
 <style scoped>
 .switch {
   display: inline-block;
-  line-height: 42px;
+  line-height: 39px;
   color: #878d99;
   outline: none;
   -moz-user-select:none;
@@ -89,7 +94,12 @@ export default {
   font-weight: 500;
   cursor: pointer;
   vertical-align: middle;
-  margin: 0 10px;
+}
+.switch_label_left {
+  margin: 0 10px 0 0;
+}
+.switch_label_right {
+  margin: 0 0 0 10px;
 }
 .switch_core {
   margin: 0;

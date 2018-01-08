@@ -14,10 +14,10 @@
         <div class="dialog-content">
           <slot></slot>
         </div>
-        <div class="dialog-button-group">
+        <!--<div class="dialog-button-group">
           <pku-button class="btn-primary" value="确认" @callback="$emit('callback')" v-if="submit"></pku-button>
           <pku-button class="btn-default" value="关闭" @callback="onClose"></pku-button>
-        </div>
+        </div> -->
       </div>
     </div>
   </transition>
@@ -104,6 +104,9 @@ export default {
       }
     },
     onClose (flag) {
+      if (this.$children[0].checkboxList) {
+        this.$children[0].checkboxList = '[]'
+      }
       this.$emit('closeEvent')
     }
   }
@@ -124,11 +127,11 @@ export default {
   z-index: 4;
 }
 .dialog-wrapper {
-  width: 50%;
+  width: 60%;
   // height: 50%;
   background-color: #fff;
   position: absolute;
-  left: calc(25%);
+  left: calc(20%);
   top: calc(25%);
   color: #2d2f33;
   border-radius: 4px;
