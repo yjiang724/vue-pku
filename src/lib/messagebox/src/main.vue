@@ -1,25 +1,32 @@
 <template>
-   <transition name="slide" v-on:before-enter="beforeEnter"
-          v-on:enter="enter"
-          v-on:after-enter="afterEnter"
-          v-on:before-leave="beforeLeave"
-          v-on:leave="leave"
-          v-on:after-leave="afterLeave">
-    <div class="alert" v-show="show">
-      <div class="alert-wrapper" :class="{'alert-wrapper-fixed': true}">
+   <transition name="slide" 
+      v-on:before-enter="beforeEnter"
+      v-on:enter="enter"
+      v-on:after-enter="afterEnter"
+      v-on:leave="leave"
+      v-on:after-leave="afterLeave">
+    <div class="alert" v-if="show">
+      <div class="alert-wrapper">
         <div class="alert-header">
           <div class="alert-title">{{ title }}</div>
-          <button aria-label="Close" class="alert-close" @click="onClose"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
+          <button aria-label="Close" class="alert-close" @click="onCloseEventHandler"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="alert-content">
-          <span v-if="!text">{{ message }}</span>
+          <span v-if="type !== 'text'">{{ message }}</span>
           <div class="alert-input" v-else>
-            <textarea v-model="data"></textarea>
+            <textarea ref="message" v-focus></textarea>
           </div>
         </div>
         <div class="alert-button-group">
-          <button class="btn btn-primary" v-if="submitButtonText" @click="onSubmit"><span>{{ submitButtonText }}</span></button>
-          <button class="btn btn-default" @click="onClose"><span>{{ closeButtonText }}</span></button>
+          <pku-button 
+            class="btn btn-primary"
+            :value="submitButtonText"
+            @callback="onSubmitEventHandler"
+            v-if="submitButtonText.length > 0"></pku-button>
+          <pku-button 
+            class="btn btn-default"
+            :value="closeButtonText"
+            @callback="onCloseEventHandler"></pku-button>
         </div>
       </div>
     </div>
@@ -27,18 +34,29 @@
 </template>
 
 <script>
+import pkuButton from '../../button/button.vue'
+
 export default {
   name: 'Messagebox',
   data () {
     return {
       show: false,
-      title: undefined,
-      message: undefined,
-      callback: undefined,
-      closeButtonText: undefined,
-      submitButtonText: undefined,
-      text: false,
-      data: this.message
+      title: '标题',
+      message: '提示语',
+      onClose: null,
+      onClick: null,
+      type: undefined,
+      submitButtonText: '',
+      closeButtonText: '关闭'
+    }
+  },
+  watch: {
+    show (val) {
+      if (val && this.type === 'text') {
+        setTimeout(() => {
+          this.$refs.message.value = this.message
+        })
+      }
     }
   },
   methods: {
@@ -59,8 +77,6 @@ export default {
     afterEnter: function (el) {
       el.children[0].style.transform = 'translateY(0px)'
     },
-    beforeLeave: function (el) {
-    },
     leave: function (el, done) {
       el.style.backgroundColor = 'rgba(0, 0, 0, 0)'
       done()
@@ -71,19 +87,23 @@ export default {
         el.style.display = 'none'
       }, 100)
     },
-    onSubmit () {
-      if (this.text) {
-        this.callback(this.data)
+    onSubmitEventHandler () {
+      this.show = false
+      if (this.type === 'text') {
+        this.onClick(this.$refs.message.value)
       } else {
-        this.callback()
+        this.onClick()
       }
-      this.show = false
     },
-    onClose (flag) {
+    onCloseEventHandler (flag) {
       this.show = false
+      if (typeof this.onClose === 'function') {
+        this.onClose();
+      }
     }
   },
   components: {
+    pkuButton
   }
 }
 </script>
@@ -143,7 +163,7 @@ export default {
   color: #5a5e66;
   font-size: 14px;
   text-align: left;
-  padding: 60px 0 10px;
+  margin: 60px 0 10px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   top: 0;
@@ -171,90 +191,5 @@ export default {
   height: 48px;
   max-width: 460px;
   margin: 0px;
-}
-
-.btn {
-  display: inline-block;
-  position: relative;
-  padding: 9px 14px;
-  margin-bottom: 0;
-  min-width: 70px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: center;
-  white-space: nowrap;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #5a5e66;
-  text-transform:uppercase;
-  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-  box-sizing: border-box;
-  background-color: #ffffff;
-  font-family: Roboto, sans-serif;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-}
-.btn:focus {
-  outline: none;
-}
-.btn.btn-default {
-  background-color: #ffffff;
-}
-.btn.btn-default:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.btn.btn-primary {
-  background-color: rgb(25, 118, 210);
-  color: #ffffff;
-}
-.btn.btn-primary:hover {
-  background-color: rgba(25, 118, 210, 0.75);
-}
-.btn.btn-warning {
-  background-color: rgb(245, 124, 0);
-  color: #ffffff;
-}
-.btn.btn-warning:hover {
-  background-color: rgba(245, 124, 0, 0.75);
-}
-.btn.btn-success {
-  background-color: rgb(56, 142, 60);
-  color: #ffffff;
-}
-.btn.btn-success:hover {
-  background-color: rgba(56, 142, 60, 0.75);
-}
-.btn.btn-danger {
-  background-color: rgb(211, 47, 47);
-  color: #ffffff;
-}
-.btn.btn-danger:hover {
-  background-color: rgba(211, 47, 47, 0.75);
-}
-.btn.btn-disabled {
-  color: #c0c4cc;
-  background-color: #F5F5F5;
-  cursor: not-allowed; 
-}
-.btn.btn-disabled:hover {
-  cursor: not-allowed; 
-}
-.btn:active {
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.8) 0px 1px 4px;
-}
-.btn.btn-disabled:active {
-  box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
-}
-.btn span {
-  padding:0 2px;
 }
 </style>

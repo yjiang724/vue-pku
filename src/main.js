@@ -39,6 +39,13 @@ const install = function(Vue, opts = {}) {
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);

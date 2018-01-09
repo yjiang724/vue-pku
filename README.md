@@ -20,6 +20,19 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.6.3 beta 1/9/2018
+    - update compontent
+        - `<pku-notice>`
+            - 去除 `autoclose` 参数
+            - 添加 ['success', 'error', 'info', 'warning'] 四种提示类型
+            - 多个 Notice 会以出现的先后顺序在右侧从上至下排列
+            - 多个 Notice 存在时，关闭任意 Notice，其底下 Notice 会向上移动
+            - 在 Element UI 源码基础上修改得到
+        - `<pku-messagebox>`
+            - 在 `<pku-notice>` 源码基础上修改得到
+            - 更改需要设置的参数和格式
+            - 添加了关闭、确认事件的回调函数
+            - `this.$text` 打开后能自动获取焦点，设置输入框的默认值，确认事件时能返回输入框的数据
 - 0.6.2 beta 1/8/2018
     - update compontent
         - `<pku-notice>`

@@ -2,7 +2,10 @@
   <transition name="slide">
     <div class="notice" v-if="show" :style="positionStyle">
       <div class="notice-header">
-        <div class="notice-title">{{ title }}</div>
+        <div class="notice-title">
+          <i :class="colorType" aria-hidden="true"></i>
+          {{ title }}
+          </div>
         <button aria-label="Close" class="notice-close" @click.stop="close"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
       </div>
       <div class="notice-content">
@@ -23,6 +26,9 @@ export default {
       return {
         [this.verticalProperty]: `${ this.verticalOffset }px`
       };
+    },
+    colorType () {
+      return this.colorMap[this.type]
     }
   },
   data () {
@@ -30,13 +36,19 @@ export default {
       title: '标题',
       message: '内容',
       show: false,
-      autoclose: false,
-      time: 3000,
+      type: '',
+      time: 0,
       verticalOffset: 0,
       position: 'top-right',
       onClose: null,
       onClick: null,
-      closed: false
+      closed: false,
+      colorMap: {
+        warning: 'fa fa-exclamation-triangle',
+        success: 'fa fa-check-circle',
+        error: 'fa fa-times-circle',
+        info: 'fa fa-info-circle',
+      }
     }
   },
   watch: {
@@ -46,14 +58,12 @@ export default {
         this.$el.addEventListener('transitionend', this.destroyElement);
       }
     },
-    autoclose (val, oldVal) {
-      console.log(val, oldVal)
-      if (this.autoclose) {
-        let _this = this
-        setTimeout(function () {
-          _this.show = false
-        }, Number(_this.time))
-      }
+  },
+  mounted () {
+    if (this.time > 0) {
+      setTimeout(() => {
+        this.close()
+      }, this.time)
     }
   },
   methods: {
@@ -101,6 +111,18 @@ export default {
 .notice-title {
   display: inline-block;
 }
+.notice-title .fa-exclamation-triangle {
+  color: rgb(245, 124, 0);
+}
+.notice-title .fa-info-circle {
+  color: rgb(25, 118, 210);
+}
+.notice-title .fa-times-circle {
+  color: rgb(211, 47, 47);
+}
+.notice-title .fa-check-circle {
+  color: rgb(56, 142, 60);
+}
 .notice-close {
   float: right;
   background: transparent;
@@ -126,13 +148,18 @@ export default {
   transition: transform 300ms ease 500ms;
 }
 .slide-leave-active {
-  transition: transform 500ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: opacity 300ms ease;
 }
-.slide-enter, .slide-leave-to {
+.slide-enter {
   transform: translateX(500px);
 }
-
-.slide-enter-to, .slide-leave {
+.slide-leave {
+  opacity: 1;
+}
+.slide-leave-to {
+  opacity: 0;
+}
+.slide-enter-to {
   transform: translateX(0px);
 }
 </style>
