@@ -18,15 +18,18 @@
           </div>
         </div>
         <div class="alert-button-group">
-          <pku-button 
+          <button  
             class="btn btn-primary"
-            :value="submitButtonText"
-            @callback="onSubmitEventHandler"
-            v-if="submitButtonText.length > 0"></pku-button>
-          <pku-button 
+            @click="onSubmitEventHandler"
+            v-if="submitButtonText.length > 0">
+            <span>{{ submitButtonText }}</span>
+          </button>
+          <button  
             class="btn btn-default"
-            :value="closeButtonText"
-            @callback="onCloseEventHandler"></pku-button>
+            @click="onCloseEventHandler"
+            v-if="submitButtonText.length > 0">
+            <span>{{ closeButtonText }}</span>
+          </button>
         </div>
       </div>
     </div>
@@ -95,7 +98,7 @@ export default {
         this.onClick()
       }
     },
-    onCloseEventHandler (flag) {
+    onCloseEventHandler () {
       this.show = false
       if (typeof this.onClose === 'function') {
         this.onClose();
@@ -191,5 +194,60 @@ export default {
   height: 48px;
   max-width: 460px;
   margin: 0px;
+}
+
+
+
+.btn {
+  display: inline-block;
+  position: relative;
+  padding: 9px 14px;
+  margin-bottom: 0;
+  min-width: 70px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #5a5e66;
+  text-transform:uppercase;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-family: Roboto, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+.btn:focus {
+  outline: none;
+}
+.btn.btn-default {
+  background-color: #ffffff;
+}
+.btn.btn-default:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.btn.btn-primary {
+  background-color: rgb(25, 118, 210);
+  color: #ffffff;
+}
+.btn.btn-primary:hover {
+  background-color: rgba(25, 118, 210, 0.75);
+}
+.btn:active {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.8) 0px 1px 4px;
+}
+.btn span {
+  padding:0 2px;
 }
 </style>

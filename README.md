@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.6.4 beta 1/10/2018
+    - update compontent
+        - `<pku-messagebox>` 中 `<pku-button>` 的 `value` 不能自定义，通过将 `<pku-button>` 换成原生 `<button>` 解决
+        - `<pku-table>`，修改了 `click` 回调时间发生后，`checkbox` 状态变量丢失的情况
 - 0.6.3 beta 1/9/2018
     - update compontent
         - `<pku-notice>`

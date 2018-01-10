@@ -141,7 +141,7 @@ export default {
     onClickEventHandler (id) {
       let checkboxList = this.checkboxList
       this.$emit('clickEvent', { id, checkboxList })
-      this.checkboxList = '[]'
+      // this.checkboxList = '[]'
     },
     onMethodEventHandler (id, item) {
       this.$emit('methodEvent', id, item, this.checkboxList)
