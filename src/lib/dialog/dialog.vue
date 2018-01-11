@@ -125,6 +125,8 @@ export default {
   color: #ffffff;
   transition: all 200ms ease-out;
   z-index: 4;
+  overflow-y:scroll;  
+  overflow-x:hidden;  
 }
 .dialog-wrapper {
   width: 60%;

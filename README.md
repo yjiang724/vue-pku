@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.7.1 beta 1/12/2018
+    - update compontent
+        - `<pku-dialog>`
+            - 增加滚动条
 - 0.7.0 beta 1/11/2018
     - add compontent
         - `<pku-input>`
