@@ -40,8 +40,9 @@ input {
   font-family: Roboto,sans-serif;
   font-size: 14px;
   line-height: 20px;
-  min-width: 10rem;
+  min-width: 200px;
   min-height: 34px;
+  width: 100%;
   padding: 9px 12px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0,0,0,0);

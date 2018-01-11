@@ -20,8 +20,11 @@ Vue.use(pkue)
 ```
 
 # Version
-- 0.7.1 beta 1/12/2018
+- 0.7.4 beta 1/12/2018
     - update compontent
+        - `<pku-input>`, `<pku-select>`, `<pku-textarea>`
+            - 取消 rem 单位
+            - 设置默认 `width` 为 `100%`
         - `<pku-dialog>`
             - 增加滚动条
 - 0.7.0 beta 1/11/2018

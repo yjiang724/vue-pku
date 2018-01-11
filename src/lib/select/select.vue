@@ -97,8 +97,9 @@ export default {
   font-family: Roboto, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  min-width: 10rem;
+  min-width: 200px;
   min-height: 34px;
+  width: 100%;
   padding: 9px 12px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -136,7 +137,8 @@ export default {
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.14) 0px -4px 6px, rgba(0, 0, 0, 0.1) 0px 1px 4px;
   line-height: 32px;
-  min-width: 10rem;
+  min-width: 200px;
+  width: 100%;
   padding: 0px;
   margin-bottom: 10px;
   position: absolute;
@@ -152,7 +154,7 @@ export default {
   font-size: 14px;
   height: 34px;
   line-height: 34px;
-  padding: 0 1rem;
+  padding: 0 20px;
   position: relative;
   text-overflow: ellipsis;
   white-space: nowrap;
