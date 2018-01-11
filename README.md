@@ -20,6 +20,23 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.7.0 beta 1/11/2018
+    - add compontent
+        - `<pku-input>`
+            - 模拟系统的单行输入框
+            - 提供键入操作时的回调方法
+        - `<pku-textarea>`
+            - 模拟系统的多行输入框
+            - **缺少** 键入操作的回调方法
+        - `<pku-form>`
+            - 模拟系统的表格组件
+            - 提供 inline 与 block 两种布局
+        - `<pku-form-item>`
+            - `<pku-form>` 组件的每行
+            - 可以插入任意 `html` 代码或者 `<pku-*>` 组件
+    - update compontent
+        - `<pku-dialog>`
+            - 解决该组件在未传入 checkbox 变量时的 **warning** 警告
 - 0.6.4 beta 1/10/2018
     - update compontent
         - `<pku-messagebox>` 中 `<pku-button>` 的 `value` 不能自定义，通过将 `<pku-button>` 换成原生 `<button>` 解决

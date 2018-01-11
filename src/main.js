@@ -4,6 +4,9 @@ import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Dialog from './lib/dialog'
+import Form from './lib/form'
+import FormItem from './lib/form-item'
+import Input from './lib/input'
 import Loading from './lib/loading'
 import Messagebox from './lib/messagebox'
 import Notice from './lib/notice'
@@ -11,6 +14,7 @@ import Pagination from './lib/pagination'
 import Select from './lib/select'
 import Switch from './lib/switch'
 import Table from './lib/table'
+import Textarea from './lib/textarea'
 
 const components = [
   Banner,
@@ -18,11 +22,15 @@ const components = [
   Button,
   Checkbox,
   Dialog,
+  Form,
+  Input,
   Loading,
   Pagination,
   Select,
   Switch,
-  Table
+  Table,
+  Textarea,
+  FormItem
 ]
 
 const install = function(Vue, opts = {}) {
@@ -57,11 +65,15 @@ export {
   Button,
   Checkbox,
   Dialog,
+  Form,
+  Input,
   Loading,
   Pagination,
   Select,
   Switch,
-  Table
+  Table,
+  Textarea,
+  FormItem
 }
 
 export default {
@@ -72,9 +84,13 @@ export default {
   Button,
   Checkbox,
   Dialog,
+  Form,
+  Input,
   Loading,
   Pagination,
   Select,
   Switch,
-  Table
+  Table,
+  Textarea,
+  FormItem
 }

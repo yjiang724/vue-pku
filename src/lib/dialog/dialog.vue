@@ -104,7 +104,7 @@ export default {
       }
     },
     onClose (flag) {
-      if (this.$children[0].checkboxList) {
+      if (this.$children[0] && this.$children[0].checkboxList) {
         this.$children[0].checkboxList = '[]'
       }
       this.$emit('closeEvent')
