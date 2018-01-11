@@ -34,5 +34,8 @@ section label {
   display: block;
   padding-right: 10px;
   padding-bottom: 10px;
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif; 
+  font-weight: 400; 
+  -webkit-font-smoothing: antialiased; 
 }
 </style>

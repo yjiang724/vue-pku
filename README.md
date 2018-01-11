@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.7.8 beta 1/12/2018
+    - update compontent
+         - `<pku-input>`
+            - 监听输入值
 - 0.7.4 beta 1/12/2018
     - update compontent
         - `<pku-input>`, `<pku-select>`, `<pku-textarea>`

@@ -1,8 +1,8 @@
 <template>
   <input
     type="text"
-    :disabled="disabled"
-    :value="value">
+    v-model="value"
+    :disabled="disabled">
 </template>
 
 <script>

@@ -19,4 +19,13 @@ export default {
 form.inline >>> section label {
   display: inline;
 }
+form.inline >>> section input {
+  width: 70%;
+}
+form.inline >>> section .select {
+  width: 70%;
+}
+form.inline >>> section textarea {
+  width: 70%;
+}
 </style>

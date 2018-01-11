@@ -78,6 +78,9 @@ export default {
   font-weight: 400;
   position: relative;
   text-align: left;
+  min-width: 200px;
+  min-height: 34px;
+  width: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -97,9 +100,6 @@ export default {
   font-family: Roboto, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  min-width: 200px;
-  min-height: 34px;
-  width: 100%;
   padding: 9px 12px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
