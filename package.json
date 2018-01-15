@@ -1,7 +1,7 @@
 {
   "name": "vue-pku",
   "description": "vue-pku for vue.js, built in with PKU style compontents.",
-  "version": "0.7.8",
+  "version": "0.8.0",
   "author": "JIANG Yu <look@jiangyu.me>",
   "license": "MIT",
   "private": false,
@@ -12,6 +12,7 @@
     "build": "npm run dist && npm run dist"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "vue": "^2.5.13"
   },
   "browserslist": [

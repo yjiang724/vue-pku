@@ -1,6 +1,7 @@
 <template>
   <textarea
     ref="mod"
+     v-model="value"
     :disabled="disabled"></textarea>
 </template>
 
@@ -20,10 +21,11 @@ export default {
   data() {
     return {
       value: this.message
+      // msg: this.message
     }
   },
   mounted () {
-    this.$refs.mod.value = this.value
+    // this.$refs.mod.value = this.value
   }
 }
 </script>

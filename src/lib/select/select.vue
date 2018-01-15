@@ -1,7 +1,7 @@
 <template>
   <div class="select">
     <div class="select-header" @click="show = !show">
-      <span>{{selected}}</span>
+      <span>{{ value || '请选择' }}</span>
       <span class="select-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <transition name="fade">
@@ -21,7 +21,7 @@
 export default {
   name: 'pkuSelect',
   props: {
-    value: {
+    selected: {
       default: '请选择'
     },
     list: {
@@ -46,22 +46,24 @@ export default {
   data () {
     return {
       show: false,
-      selected: this.value
+      value: this.selected,
+      valueKey: undefined
     }
   },
   watch: {
-    value (val) {
-      this.selected = val
+    selected (val) {
+      this.value = val
     }
   },
   methods: {
     onClickEventHandler (evt) {
-      this.selected = evt.target.innerText
+      this.value = evt.target.innerText
       this.show = !this.show
       if (evt.target.dataset.key) {
+        this.valueKey = evt.target.dataset.key
         this.$emit('callback', evt.target.dataset.key)
       } else {
-        this.$emit('callback', this.selected)
+        this.$emit('callback', this.value)
       }
     }
   }

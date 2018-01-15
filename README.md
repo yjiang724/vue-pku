@@ -20,6 +20,17 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.0 beta 1/15/2018
+    - add compontent
+        - `<pku-radio>`
+        - `<pku-cascader>`
+    - update compontent
+        - `<pku-input>`
+            - 可以通过注册 `ref` 获取输入框的内容
+        - `<pku-select>`
+            - 可以通过注册 `ref` 获取选择框的内容
+        - `<pku-textarea>`
+            - 可以通过注册 `ref` 获取文本框的内容        
 - 0.7.8 beta 1/12/2018
     - update compontent
          - `<pku-input>`

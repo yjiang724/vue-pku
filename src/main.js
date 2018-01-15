@@ -3,6 +3,7 @@ import Banner from './lib/banner'
 import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
+import Cascader from './lib/cascader'
 import Dialog from './lib/dialog'
 import Form from './lib/form'
 import FormItem from './lib/form-item'
@@ -11,21 +12,25 @@ import Loading from './lib/loading'
 import Messagebox from './lib/messagebox'
 import Notice from './lib/notice'
 import Pagination from './lib/pagination'
+import Radio from './lib/radio'
 import Select from './lib/select'
 import Switch from './lib/switch'
 import Table from './lib/table'
 import Textarea from './lib/textarea'
+import axios from 'axios'
 
 const components = [
   Banner,
   Breadcrumb,
   Button,
+  Cascader,
   Checkbox,
   Dialog,
   Form,
   Input,
   Loading,
   Pagination,
+  Radio,
   Select,
   Switch,
   Table,
@@ -44,6 +49,7 @@ const install = function(Vue, opts = {}) {
   Vue.prototype.$confirm = Messagebox.confirm
   Vue.prototype.$text = Messagebox.text
   Vue.prototype.$notice = Notice
+  Vue.prototype.$http = axios
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
@@ -63,12 +69,14 @@ export {
   Banner,
   Breadcrumb,
   Button,
+  Cascader,
   Checkbox,
   Dialog,
   Form,
   Input,
   Loading,
   Pagination,
+  Radio,
   Select,
   Switch,
   Table,
@@ -82,12 +90,14 @@ export default {
   Banner,
   Breadcrumb,
   Button,
+  Cascader,
   Checkbox,
   Dialog,
   Form,
   Input,
   Loading,
   Pagination,
+  Radio,
   Select,
   Switch,
   Table,
