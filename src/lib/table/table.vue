@@ -29,7 +29,11 @@
                 {{item[val.key]}}
             </td>
             <td v-if="method">
-               <span v-for="(val, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ val }}</a></span>
+               <pku-cascader
+                  selected="操作"
+                  :list="methodGroup"
+                  @callback="onMethodEventHandler($event, item['id'])"></pku-cascader>
+              <!-- <span v-for="(val, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ val }}</a></span> -->
             </td>
           </tr>
           </transition-group>
@@ -143,8 +147,8 @@ export default {
       this.$emit('clickEvent', { id, checkboxList })
       // this.checkboxList = '[]'
     },
-    onMethodEventHandler (id, item) {
-      this.$emit('methodEvent', id, item, this.checkboxList)
+    onMethodEventHandler (evt, item) {
+      this.$emit('methodEvent', evt, item, this.checkboxList)
     },
     renderdata (data) {
       this.currentPageData = data
@@ -218,7 +222,7 @@ export default {
     -webkit-font-smoothing: antialiased;
   }
   .table-wrapper {
-    overflow-x: scroll;
+    // overflow-x: scroll;
     white-space: nowrap;
     padding-bottom: 20px;
   }

@@ -1,11 +1,12 @@
 <template>
   <div class="select">
     <div class="select-header" @click="show = !show">
+      <span class="select-label" v-if="label"> {{ label }} </span>
       <span>{{ value || '请选择' }}</span>
       <span class="select-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <transition name="fade">
-      <ul class="select-droplist" :class="animation" v-show="show" @click="onClickEventHandler">
+      <ul class="select-droplist" :class="{'select-is-labeled': label}" :class="animation" v-show="show" @click="onClickEventHandler">
         <li v-for="item in list" v-bind:data-key="item[exportKey] || ''" v-if="importKey.length > 0">
            {{ item[importKey]}}
         </li>
@@ -23,6 +24,9 @@ export default {
   props: {
     selected: {
       default: '请选择'
+    },
+    label: {
+      default: ''
     },
     list: {
       type: Array,
@@ -84,13 +88,13 @@ export default {
   min-height: 34px;
   width: 100%;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -webkit-touch-action: none;
-     -moz-touch-action: none;
-      -ms-touch-action: none;
-          touch-action: none;
+  -moz-touch-action: none;
+  -ms-touch-action: none;
+  touch-action: none;
 }
 .select-header {
   border: 1px solid transparent;
@@ -115,6 +119,11 @@ export default {
 .select-header span {
   padding: 0 6px;
 }
+.select-header span.select-label {
+  border-right: 1px solid rgba(0,0,0,.04);
+  padding: 9px 12px;
+  cursor: not-allowed;
+}
 .select-icon {
   float: right;
 }
@@ -134,6 +143,10 @@ export default {
   position: absolute;
   top: -6px;
 }
+.select-is-labeled.select-droplist::before {
+  left: 70px;
+}
+
 .select-droplist {
   background-color: #ffffff;
   border-radius: 4px;

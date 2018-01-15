@@ -160,7 +160,6 @@ export default {
   font-weight: 400;
   position: absolute;
   text-align: left;
-  min-width: 300px;
   min-height: 34px;
   width: 100%;
   -webkit-user-select: none;
@@ -187,7 +186,6 @@ export default {
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   line-height: 32px;
-  min-width: 300px;
   width: 100%;
   padding: 10px 0px;
   margin-bottom: 10px;
@@ -209,7 +207,7 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.cascader-droplist li:hover {
+.cascader-droplist-after li:hover {
   background-color: #f5f7fa;
 }
 

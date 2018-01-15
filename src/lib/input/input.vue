@@ -46,7 +46,7 @@ input {
   padding: 9px 12px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  box-shadow: 0 1px 4px rgba(0,0,0,.12);
+  box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
   transition: all 500ms ease;
   -moz-user-select:none;
   -webkit-user-select:none;
@@ -55,7 +55,7 @@ input {
 }
 input:focus {
   outline: none;
-  box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
+  // box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
   border-color: rgb(25, 118, 210);
 }
 input:disabled {

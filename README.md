@@ -20,6 +20,19 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.1 beta 1/15/2018
+    - update compontent
+        - `<pku-table>`
+            - 使用级联选择器替换表格的每行操作按钮
+        - `<pku-select>`
+            - 下拉选择器添加常量提示标签
+        - `<pku-input>`
+            - 修改输入框阴影属性
+        - `<pku-cascader-item>`
+            - 去除级联选择器最小宽度限制
+        - `<pku-cascader>`
+            - 去除级联选择器最小宽度限制
+            - 调整内边距
 - 0.8.0 beta 1/15/2018
     - add compontent
         - `<pku-radio>`

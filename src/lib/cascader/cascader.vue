@@ -218,7 +218,6 @@ export default {
   font-weight: 400;
   position: relative;
   text-align: left;
-  min-width: 300px;
   min-height: 34px;
   width: 100%;
   -webkit-user-select: none;
@@ -240,7 +239,8 @@ export default {
   font-family: Roboto, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  padding: 9px 12px;
+  padding: 4px 12px;
+  margin: 5px 0px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
