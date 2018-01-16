@@ -1,7 +1,7 @@
 # vue-pku
-> vue-pku for vue.js, built in with PKU style compontents.
+> vue-pku is a Web UI Toolkit for vue.js
 
-vue-pku is an ui components library base on vuejs and awsome font , which helps you build your web application in pku style.
+vue-pku is an ui components library base on vuejs and awsome font.
 
 [Preview](http://don-ui.jiangyu.me)｜[中文文档](http://don-ui.jiangyu.me)
 
@@ -20,6 +20,8 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.3 beta 1/16/2018
+    - update readme.md
 - 0.8.2 beta 1/16/2018
     - rename `pkue` to `don-ui`
 - 0.8.1 beta 1/15/2018
