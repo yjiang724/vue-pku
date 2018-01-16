@@ -20,6 +20,9 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.6 beta 1/16/2018
+    - update `<pku-header>`
+        - 处理 safari 浏览器不兼容的问题
 - 0.8.5 beta 1/16/2018
     - add compontent
         - `<pku-tag>`
