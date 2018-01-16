@@ -17,6 +17,7 @@ import Radio from './lib/radio'
 import Select from './lib/select'
 import Switch from './lib/switch'
 import Table from './lib/table'
+import Tag from './lib/tag'
 import Textarea from './lib/textarea'
 import axios from 'axios'
 
@@ -36,6 +37,7 @@ const components = [
   Select,
   Switch,
   Table,
+  Tag,
   Textarea,
   FormItem
 ]
@@ -83,6 +85,7 @@ export {
   Select,
   Switch,
   Table,
+  Tag,
   Textarea,
   FormItem
 }
@@ -105,6 +108,7 @@ export default {
   Select,
   Switch,
   Table,
+  Tag,
   Textarea,
   FormItem
 }

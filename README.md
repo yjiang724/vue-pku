@@ -20,6 +20,14 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.5 beta 1/16/2018
+    - add compontent
+        - `<pku-tag>`
+    - update compontent
+        - `<pku-header>`
+            - 添加欢迎语
+            - 增加按钮组的回调方法
+            - 固定问题组标签的长度及显示方式
 - 0.8.4 beta 1/16/2018
     - add compontent
         - `<pku-header>`
