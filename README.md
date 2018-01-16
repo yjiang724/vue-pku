@@ -20,6 +20,17 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.4 beta 1/16/2018
+    - add compontent
+        - `<pku-header>`
+    - update compontent
+        - `<pku-input>`
+            - 取消最小宽度限制，改为继承父级元素
+            - 增加 `border` 变量，可隐藏输入框边框 
+        - `<pku-select>`
+            - 取消最小宽度限制，改为继承父级元素
+            - 增加 `border` 变量，可隐藏选择框边框
+            - 选择框可做多级按钮使用
 - 0.8.3 beta 1/16/2018
     - update readme.md
 - 0.8.2 beta 1/16/2018

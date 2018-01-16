@@ -7,6 +7,7 @@ import Cascader from './lib/cascader'
 import Dialog from './lib/dialog'
 import Form from './lib/form'
 import FormItem from './lib/form-item'
+import Header from './lib/header'
 import Input from './lib/input'
 import Loading from './lib/loading'
 import Messagebox from './lib/messagebox'
@@ -27,6 +28,7 @@ const components = [
   Checkbox,
   Dialog,
   Form,
+  Header,
   Input,
   Loading,
   Pagination,
@@ -73,6 +75,7 @@ export {
   Checkbox,
   Dialog,
   Form,
+  Header,
   Input,
   Loading,
   Pagination,
@@ -94,6 +97,7 @@ export default {
   Checkbox,
   Dialog,
   Form,
+  Header,
   Input,
   Loading,
   Pagination,

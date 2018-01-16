@@ -2,6 +2,7 @@
   <input
     type="text"
     v-model="value"
+    :class="{'input-noborder': !border}"
     :disabled="disabled">
 </template>
 
@@ -16,6 +17,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    border: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -32,18 +37,15 @@ export default {
 </script>
 <style scoped>
 input {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  box-sizing: border-box;
+  padding: 6px 12px;
+  // min-width: 200px;
+  width: inherit;
   color: rgba(0,0,0,.4);
-  cursor: pointer;
-  font-family: Roboto,sans-serif;
   font-size: 14px;
   line-height: 20px;
-  min-width: 200px;
-  min-height: 34px;
-  width: 100%;
-  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: text;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
@@ -52,6 +54,10 @@ input {
   -webkit-user-select:none;
   user-select:none;
   -webkit-font-smoothing: antialiased;
+}
+input.input-noborder {
+  border-color: #dcdfe6;
+  box-shadow: none;
 }
 input:focus {
   outline: none;
