@@ -123,7 +123,7 @@ export default {
     onShowEventHandler () {
       this.show = !this.show
       this.root = ''
-      if (this.async) {
+      if (this.async && this.show) {
         let data = this.params
         this.$http({
           method: 'POST',
@@ -238,9 +238,9 @@ export default {
   cursor: pointer;
   font-family: Roboto, sans-serif;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 4px 12px;
-  margin: 5px 0px;
+  // margin: 5px 0px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

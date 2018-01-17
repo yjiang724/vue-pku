@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" :style="{ left: leftStyle}">
+  <div class="cascader-item" :style="{ left: leftStyle}">
     <transition name="fade">
       <ul class="cascader-droplist-after" 
         v-show="show"
@@ -63,7 +63,14 @@ export default {
   computed:{
     leftStyle () {
       if (this.rank > 0) {
-        return '300px'
+        // let node = this.$el
+        // while (!node.classList.contains('cascader')) {
+        //   node = node.parentNode
+        // }
+        // console.log(this, this.$el)
+        // console.log(getComputedStyle(node).width)
+        // getComputedStyle(temp1.$el.parentNode.parentNode.parentNode).width
+        return this.left
       } else {
         return '0px'
       }
@@ -73,8 +80,16 @@ export default {
     return {
       show: false,
       child_list: [],
-      root: this.fullRoot
+      root: this.fullRoot,
+      left: '0px'
     }
+  },
+  mounted () {
+    let node = this.$el
+    while (!node.classList.contains('cascader')) {
+      node = node.parentNode
+    }
+    this.left = getComputedStyle(node).width
   },
   watch: {
     list (val) {
@@ -154,7 +169,7 @@ export default {
 <style scoped>
 @import '/static/font-awesome/css/font-awesome.min.css';
 
-.cascader {
+.cascader-item {
   display: inline-block;
   font-size: 14px;
   font-weight: 400;

@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.8.7 beta 1/16/2018
+    - update `<pku-cascader>`
+        - 解决了级联选择器子组件在继承宽度时的距离问题
+        - 修改了级联选择器的高度
 - 0.8.6 beta 1/16/2018
     - update `<pku-header>`
         - 处理 safari 浏览器不兼容的问题
