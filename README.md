@@ -20,6 +20,9 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.9.1 beta 1/27/2018
+    - update `<pku-dropdown>`
+        - 修复 checkbox 模式下，点击确认后原复选框状态消失的问题
 - 0.9.0 beta 1/27/2018
     - update `<pku-button>`
         - 增加 small 的尺寸

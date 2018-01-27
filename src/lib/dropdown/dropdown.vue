@@ -15,7 +15,7 @@
     <transition name="fade">
       <ul class="dropdown-droplist" :class="{'dropdown-is-labeled': label}" :class="animation" v-show="show" @click="onClickEventHandler">
         <li v-if="checkbox">
-          <span class="dropdown-label"><pku-checkbox value="全选" @callback="onSelectAllHandler"></pku-checkbox></span>
+          <span class="dropdown-label"><pku-checkbox ref="selectAll" value="全选" @callback="onSelectAllHandler"></pku-checkbox></span>
         </li>
         <li v-for="(item, id) in list" :class="{'dropdown-disabled': item.disabled}" :disabled="item.disabled">
           <span class="dropdown-label" v-if="checkbox"><pku-checkbox :value="item.label" ref="checkbox" @callback="onSelectOneHandler($event, id)"></pku-checkbox></span>
@@ -105,6 +105,15 @@ export default {
     onSelectOneHandler (evt, id) {
       let tmp = JSON.parse(this.selectArr)
       tmp[id] = evt
+      let res = tmp.map(item => {
+        return item ? 1 : 0
+      })
+      let sum = res.reduce( (l, r)=> { return r + l;}, 0)
+      if (sum === tmp.length) {
+        this.$refs.selectAll.checked = true
+      } else {
+        this.$refs.selectAll.checked = false
+      }
       this.selectArr = JSON.stringify(tmp)
     },
     onButtonEventHandler (evt) {
@@ -122,10 +131,15 @@ export default {
     },
     onSelectSubmitHandler () {
       this.show = !this.show
-      let res = this.$refs.checkbox.map(item => item.value)
-      let tmp = JSON.parse(this.selectArr)
-      tmp = tmp.map(() => false)
-      this.selectArr = JSON.stringify(tmp)
+      let res = []
+      for (let i = 0; i < this.$refs.checkbox.length; i++) {
+        if (this.$refs.checkbox[i].checked) {
+          res.push(this.$refs.checkbox[i].value)
+        }
+      }
+      // let tmp = JSON.parse(this.selectArr)
+      // tmp = tmp.map(() => false)
+      // this.selectArr = JSON.stringify(tmp)
       this.$emit('callback', res)
     }
   }
