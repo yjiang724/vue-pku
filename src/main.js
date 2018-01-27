@@ -4,6 +4,7 @@ import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Cascader from './lib/cascader'
+import Dropdown from './lib/dropdown'
 import Dialog from './lib/dialog'
 import Form from './lib/form'
 import FormItem from './lib/form-item'
@@ -28,6 +29,7 @@ const components = [
   Cascader,
   Checkbox,
   Dialog,
+  Dropdown,
   Form,
   Header,
   Input,
@@ -76,6 +78,7 @@ export {
   Cascader,
   Checkbox,
   Dialog,
+  Dropdown,
   Form,
   Header,
   Input,
@@ -99,6 +102,7 @@ export default {
   Cascader,
   Checkbox,
   Dialog,
+  Dropdown,
   Form,
   Header,
   Input,

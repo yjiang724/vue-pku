@@ -58,6 +58,7 @@ export default {
     box-shadow: 0 1px 0 hsla(0,0%,86%,.3);
     background-color: #ffffff;
     -webkit-font-smoothing: antialiased;
+    z-index: 9;
   }
   nav {
     position: relative;

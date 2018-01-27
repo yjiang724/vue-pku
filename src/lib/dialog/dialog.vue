@@ -12,7 +12,7 @@
           <button aria-label="Close" class="dialog-close" @click="onClose"><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="dialog-content">
-          <slot></slot>
+          <slot ref="content"></slot>
         </div>
         <!--<div class="dialog-button-group">
           <pku-button class="btn-primary" value="确认" @callback="$emit('callback')" v-if="submit"></pku-button>
@@ -53,8 +53,6 @@ export default {
     visible (val) {
       this.show = val
     }
-  },
-  computed: {
   },
   methods: {
     beforeEnter: function (el) {

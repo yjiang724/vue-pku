@@ -173,4 +173,8 @@ button:disabled{
   background-color: #F5F5F5;
   color: #ACA899;
 }
+.btn.btn-sm {
+  padding: 4px 4px;
+  min-width: 60px;
+}
 </style>

@@ -238,7 +238,7 @@ export default {
   cursor: pointer;
   font-family: Roboto, sans-serif;
   font-size: 14px;
-  line-height: 30px;
+  line-height: inherit;
   padding: 4px 12px;
   // margin: 5px 0px;
   white-space: nowrap;
@@ -254,7 +254,8 @@ export default {
   padding: 0 6px;
 }
 .cascader-icon {
-  float: right;
+  position: absolute;
+  right: 0px;
 }
 .cascader-icon .fa {
   transition: all 200ms ease;

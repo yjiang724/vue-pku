@@ -56,11 +56,11 @@ export default {
       on: this.value
     }
   },
-  watch: {
-    value (val) {
-      this.on = this.val
-    }
-  },
+  // watch: {
+  //   value (val) {
+  //     this.on = this.val
+  //   }
+  // },
   methods: {
     onSwitch () {
       this.on = !this.on

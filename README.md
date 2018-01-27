@@ -20,6 +20,25 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.9.0 beta 1/27/2018
+    - update `<pku-button>`
+        - 增加 small 的尺寸
+    - update `<pku-cascader>`
+        - `line-height` 设置为可继承
+        - 修改 cascader 中图标的定位类型
+    - update `<pku-header>`
+        - 修改 `z-index` 属性
+    - update `<pku-cascader>`
+        - `line-height` 设置为可继承
+        - 修改 cascader 中图标的定位类型
+    - update `<pku-switch>`
+        - 取消监听
+    - update `<pku-table>`
+        - 增加无数据时的系统提示
+        - 用 `<pku-dropdown>` 组件替换 `<pku-cascader>` 
+        - 修改表格导航的展示
+    - add `<pku-dropdown>`
+        - 增加按钮组
 - 0.8.7 beta 1/16/2018
     - update `<pku-cascader>`
         - 解决了级联选择器子组件在继承宽度时的距离问题

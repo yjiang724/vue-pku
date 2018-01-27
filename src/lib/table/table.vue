@@ -20,7 +20,10 @@
               tag="tbody"
               v-on:before-enter="beforeEnter"
               v-on:enter="enter"
-              v-on:leave="leave" >
+              v-on:leave="leave">
+          <div v-if="currentPageData[0] === undefined" v-bind:key="0" class="table-nodata">
+            暂无数据
+          </div>
           <tr v-for="(item, $id) in currentPageData" v-bind:key="$id" v-bind:data-index="$id">
             <td v-if="checkbox">
                 <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler(item['id'])"></pku-checkbox>
@@ -28,11 +31,16 @@
             <td v-for="(val, id) in menu">
                 {{item[val.key]}}
             </td>
-            <td v-if="method">
-               <pku-cascader
+            <td v-if="method" class="methods">
+              <pku-dropdown 
+                selected="操作"
+                size="sm"
+                :list="methodGroup[$id]"
+                @callback="onMethodEventHandler($event, item['id'])"></pku-dropdown>
+              <!-- <pku-cascader
                   selected="操作"
                   :list="methodGroup"
-                  @callback="onMethodEventHandler($event, item['id'])"></pku-cascader>
+                  @callback="onMethodEventHandler($event, item['id'])"></pku-cascader> -->
               <!-- <span v-for="(val, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ val }}</a></span> -->
             </td>
           </tr>
@@ -40,7 +48,9 @@
         </tbody>
       </table>
     </div>
-    <pku-pagination v-if="pagination" 
+    <pku-pagination 
+        class="table-pagination"
+        v-if="pagination" 
         @clickEvent="onClickEventHandler"
         @callback="renderdata"
         :rawdata="tableData"
@@ -104,7 +114,7 @@ export default {
     },
     methodGroup: {
       type: Array,
-      default: () => []
+      default: () => [{label: '操作', disabled: false}]
     }
   },
   data () {
@@ -143,9 +153,9 @@ export default {
       this.$emit('checkEvent', tmp)
     },
     onClickEventHandler (id) {
-      let checkboxList = this.checkboxList
+      let checkboxList = this.checkboxList.concat()
       this.$emit('clickEvent', { id, checkboxList })
-      // this.checkboxList = '[]'
+      this.checkboxList = '[]'
     },
     onMethodEventHandler (evt, item) {
       this.$emit('methodEvent', evt, item, this.checkboxList)
@@ -222,14 +232,15 @@ export default {
     -webkit-font-smoothing: antialiased;
   }
   .table-wrapper {
-    // overflow-x: scroll;
+    overflow-x: scroll;
     white-space: nowrap;
-    padding-bottom: 20px;
+    padding-bottom: 100px;
   }
   table {
     min-width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    position: relative;
   }
   table th {
     width: 180px;
@@ -272,5 +283,23 @@ export default {
   }
   table a:hover {
     color: #700005;
+  }
+  .table-nodata {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    line-height: 32px;
+  }
+  .table .methods >>> .dropdown {
+    line-height: 20px;
+    padding: 2px 0px;
+  }
+  .table .methods >>> .btn {
+    line-height: 20px;
+    padding: 2px 0px;
+  }
+  .table .table-pagination {
+    position: relative;
+    top: -90px;
   }
 </style>
