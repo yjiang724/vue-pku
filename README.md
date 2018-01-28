@@ -20,6 +20,10 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.9.2 beta 1/28/2018
+    - update `<pku-switch>`
+        - 修改组件注入 `value` 变量形式
+        - 解决组件传递数据与自身状态改变时传回数据冲突的问题
 - 0.9.1 beta 1/27/2018
     - update `<pku-dropdown>`
         - 修复 checkbox 模式下，点击确认后原复选框状态消失的问题

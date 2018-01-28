@@ -18,8 +18,8 @@ export default {
   name: 'pkuSwitch',
   props: {
     value: {
-      type: Boolean,
-      default: true
+      type: String,
+      default: 'true#123456'
     },
     ableText: {
       type: String,
@@ -53,14 +53,14 @@ export default {
   },
   data () {
     return {
-      on: this.value
+      on: this.value.split('#')[0] === 'true'
     }
   },
-  // watch: {
-  //   value (val) {
-  //     this.on = this.val
-  //   }
-  // },
+  watch: {
+    value (val) {
+      this.on = val.split('#')[0] === 'true'
+    }
+  },
   methods: {
     onSwitch () {
       this.on = !this.on
