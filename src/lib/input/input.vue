@@ -29,6 +29,9 @@ export default {
     }
   },
   watch: {
+    value (val) {
+       this.$emit('change', val)
+    },
     message (val) {
       this.value = val
     }

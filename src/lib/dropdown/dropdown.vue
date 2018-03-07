@@ -151,7 +151,7 @@ export default {
 .dropdown {
   position: relative;
   display: inline-block;
-  min-width: 200px;
+  min-width: 120px;
   width: inherit;
   text-align: left;
   font-size: inherit;

@@ -20,6 +20,11 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.9.3 beta 3/7/2018
+    - update `<pku-input>`
+        - 添加输入框监听事件
+    - update `<pku-dropdown>`
+        - 修改样式
 - 0.9.2 beta 1/28/2018
     - update `<pku-switch>`
         - 修改组件注入 `value` 变量形式
