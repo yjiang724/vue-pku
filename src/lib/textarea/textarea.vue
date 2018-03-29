@@ -24,6 +24,11 @@ export default {
       // msg: this.message
     }
   },
+  watch: {
+    value (val) {
+      this.$emit('change', val)
+    }
+  },
   mounted () {
     // this.$refs.mod.value = this.value
   }

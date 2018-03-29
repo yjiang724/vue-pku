@@ -17,7 +17,7 @@ const MessageBox = function(options, submit, cancel) {
   const userOnSubmit = submit || defaultCallback
   const id = 'messagebox' + seed++
   
-  if (options.type === 'confirm' || options.type === 'text') {
+  if (options.type === 'alert' || options.type === 'confirm' || options.type === 'text') {
     options.onClick = function(val) {
       MessageBox.submit(id, userOnSubmit , val)
     }

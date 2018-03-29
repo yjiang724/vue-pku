@@ -27,7 +27,7 @@
           <button  
             class="btn btn-default"
             @click="onCloseEventHandler"
-            v-if="submitButtonText.length > 0">
+            v-if="closeButtonText.length > 0">
             <span>{{ closeButtonText }}</span>
           </button>
         </div>

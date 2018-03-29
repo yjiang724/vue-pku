@@ -1,6 +1,6 @@
 <template>
   <div class="table">
-    <div class="table-wrapper">
+    <div :class="{'table-wrapper': true, 'table-scroll': scroll}">
       <table>
         <thead>
           <tr>
@@ -15,7 +15,7 @@
             <th v-if="method">操作</th>
           </tr>
         </thead>
-          <transition-group
+        <transition-group
               name="list"
               tag="tbody"
               v-on:before-enter="beforeEnter"
@@ -28,7 +28,7 @@
             <td v-if="checkbox">
                 <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler(item['id'])"></pku-checkbox>
             </td>
-            <td v-for="(val, id) in menu">
+            <td v-for="(val, id) in menu" :title="item[val.key]">
                 {{item[val.key]}}
             </td>
             <td v-if="method" class="methods">
@@ -49,7 +49,7 @@
       </table>
     </div>
     <pku-pagination 
-        class="table-pagination"
+        :class="{'table-pagination': true, 'pagination-scroll': scroll}"
         v-if="pagination" 
         @clickEvent="onClickEventHandler"
         @callback="renderdata"
@@ -71,6 +71,10 @@ export default {
       default: false
     },
     method: {
+      type: Boolean,
+      default: false
+    },
+    refresh: {
       type: Boolean,
       default: false
     },
@@ -115,6 +119,14 @@ export default {
     methodGroup: {
       type: Array,
       default: () => [{label: '操作', disabled: false}]
+    },
+    scroll: {
+      type: Boolean,
+      default: false
+    },
+    params: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -126,7 +138,19 @@ export default {
   },
   watch: {
     rawdata (val) {
-      this.tableData = val
+      let tmp = val
+      if (this.params.length > 0 && val.length > 0) {
+        this.params.forEach(item => {
+          tmp = tmp.filter((data) => {
+            if (item.opt === '=') {
+              return data[item.key] === item.value
+            }
+          })
+        })
+        this.tableData = tmp.concat()
+      } else {
+        this.tableData = val
+      }
       // this.$refs.c1.childMethod(); 
     },
     tableData (val) {
@@ -155,7 +179,9 @@ export default {
     onClickEventHandler (id) {
       let checkboxList = this.checkboxList.concat()
       this.$emit('clickEvent', { id, checkboxList })
-      this.checkboxList = '[]'
+      if (this.refresh) {
+        this.checkboxList = '[]'
+      }
     },
     onMethodEventHandler (evt, item) {
       this.$emit('methodEvent', evt, item, this.checkboxList)
@@ -232,15 +258,17 @@ export default {
     -webkit-font-smoothing: antialiased;
   }
   .table-wrapper {
-    overflow-x: scroll;
-    white-space: nowrap;
-    padding-bottom: 100px;
+    // overflow-x: scroll;
+    // white-space: nowrap;
+    // padding-bottom: 100px;
   }
   table {
-    min-width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
     position: relative;
+    min-width: 100%;
+    min-height: 70px;
   }
   table th {
     width: 180px;
@@ -261,6 +289,10 @@ export default {
     padding: 0 20px;
     border: 1px solid #e6ebf5;
     min-width: 60px;
+  }
+  table td:not(.methods) {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .table-sort {
     position: relative;
@@ -300,6 +332,35 @@ export default {
   }
   .table .table-pagination {
     position: relative;
-    top: -90px;
+  }
+  .table-scroll {
+    overflow: scroll;
+    overflow-y:hidden
+  }
+  .table-scroll table {
+    position: relative;
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    margin: 0 0 100px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .table-scroll::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 10px;
+  }
+  .table-scroll::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #8f000b;
+  }
+  .table-scroll::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #ffffff;
+  }
+  .pagination-scroll {
+    top: -80px;
   }
 </style>

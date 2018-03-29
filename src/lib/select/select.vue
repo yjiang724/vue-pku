@@ -1,17 +1,23 @@
 <template>
   <div class="select">
-    <div class="select-header" :class="{'select-noborder': !border}" @click="show = !show">
+    <div class="select-header" :class="{'select-noborder': !border, 'select-disabled': disabled}" @click="onShowEventHandler">
       <span class="select-label" v-if="label"> {{ label }} </span>
-      <span>{{ value || '请选择' }}</span>
+      <span class="select-content">{{ value || '请选择' }}</span>
       <span class="select-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <transition name="fade">
       <ul class="select-droplist" :class="{'select-is-labeled': label}" :class="animation" v-show="show" @click="onClickEventHandler">
-        <li v-for="item in list" v-bind:data-key="item[exportKey] || ''" v-if="importKey.length > 0">
-           {{ item[importKey]}}
+        <li v-for="item in list" v-bind:data-key="item[exportKey] || ''" v-if="item.disabled" class="select-disabled" disabled="item.disabled">
+          <span v-if="html" v-html="item[importKey]"></span>
+          <span v-else>{{ item[importKey] }}</span>
+        </li>
+        <li v-else-if="importKey.length > 0" v-bind:data-key="item[exportKey] || ''">
+          <span v-if="html" v-html="item[importKey]"></span>
+          <span v-else>{{ item[importKey] }}</span>
         </li>
         <li v-else>
-          {{ item }}
+          <span v-if="html" v-html="item"></span>
+          <span v-else>{{ item }}</span>
         </li>
       </ul>
     </transition>
@@ -22,6 +28,10 @@
 export default {
   name: 'pkuSelect',
   props: {
+    html: {
+      type: Boolean,
+      default: false
+    },
     selected: {
       default: '请选择'
     },
@@ -31,6 +41,10 @@ export default {
     border: {
       type: Boolean,
       default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     list: {
       type: Array,
@@ -64,14 +78,25 @@ export default {
     }
   },
   methods: {
+    onShowEventHandler () {
+      if (!this.disabled) {
+        this.show = !this.show
+      }
+    },
     onClickEventHandler (evt) {
-      this.value = evt.target.innerText
-      this.show = !this.show
-      if (evt.target.dataset.key) {
-        this.valueKey = evt.target.dataset.key
-        this.$emit('callback', evt.target.dataset.key)
-      } else {
-        this.$emit('callback', this.value)
+      if (evt.target.getAttribute('disabled') !== 'disabled') {
+        evt = evt.target
+        while (evt.tagName !== 'LI') {
+          evt = evt.parentNode
+        }
+        this.value = evt.innerText
+        this.show = !this.show
+        if (evt.dataset.key) {
+          this.valueKey = evt.dataset.key
+          this.$emit('callback', evt.dataset.key)
+        } else {
+          this.$emit('callback', this.value)
+        }
       }
     }
   }
@@ -102,7 +127,7 @@ export default {
   -webkit-font-smoothing: antialiased;
 }
 .select-header {
-  padding: 9px 12px;
+  padding: 6px 12px;
   color: rgba(0, 0, 0, 0.4);
   line-height: 20px;
   border: 1px solid transparent;
@@ -129,11 +154,29 @@ export default {
 }
 .select-header span.select-label {
   border-right: 1px solid rgba(0,0,0,.12);
-  padding: 9px 12px;
+  // padding: 9px 12px;
   cursor: not-allowed;
+  // vertical-align: middle;
+}
+.select-header span.select-content {
+  white-space: pre-line;
+  width: calc(100% - 100px);
+  // display: inline-block;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  height: 18px;
+  line-height: 18px;
+  // vertical-align: middle;
 }
 .select-is-labeled.select-droplist::before {
   left: 70px;
+}
+.select-disabled {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+  cursor: not-allowed;
+  outline: none;
 }
 
 .select-droplist {
@@ -151,15 +194,26 @@ export default {
 }
 .select-droplist li {
   position: relative;
-  height: 28px;
+  min-height: 28px;
   padding: 0 20px;
   line-height: 28px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
   cursor: pointer;
+}
+.select-droplist li:not(.select-disabled) {
+  text-indent: 20px;
 }
 .select-droplist li:hover {
   background-color: #f5f7fa;
+}
+li.select-disabled {
+  cursor: default;
+  padding: 0 10px;
+  font-weight: bold;
+  color: #000;
+}
+li.select-disabled:hover {
+  background-color: #ffffff;
 }
 
 

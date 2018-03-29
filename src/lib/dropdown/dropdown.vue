@@ -19,6 +19,7 @@
         </li>
         <li v-for="(item, id) in list" :class="{'dropdown-disabled': item.disabled}" :disabled="item.disabled">
           <span class="dropdown-label" v-if="checkbox"><pku-checkbox :value="item.label" ref="checkbox" @callback="onSelectOneHandler($event, id)"></pku-checkbox></span>
+          <span v-else-if="item.hr === true" class="pku-hr"></span>
           <span v-else>{{item.label}}</span>
         </li>
         <li v-if="checkbox">
@@ -117,7 +118,7 @@ export default {
       this.selectArr = JSON.stringify(tmp)
     },
     onButtonEventHandler (evt) {
-      this.$emit('callback', this.evt)
+      this.$emit('callback', evt)
     },
     onClickEventHandler (evt) {
       evt = evt.target
@@ -295,5 +296,13 @@ export default {
 .dropdown.dropdown-lg .dropdown-droplist li {
   height: 40px;
   line-height: 40px;
+}
+.pku-hr {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ebebeb;
+  left: 0;
+  top: 11px;
 }
 </style>

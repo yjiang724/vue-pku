@@ -62,7 +62,7 @@ export default {
       evt.firstElementChild.click()
     },
     onClick () {
-      this.$emit('callback')
+      this.$emit('callback', this.value)
     }
   }
 }
@@ -75,7 +75,7 @@ export default {
 .btn {
   display: inline-block;
   position: relative;
-  padding: 9px 14px;
+  padding: 6px 9px;
   margin-bottom: 0;
   min-width: 70px;
   font-size: 14px;

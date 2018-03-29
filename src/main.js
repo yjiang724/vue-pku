@@ -4,6 +4,7 @@ import Button from './lib/button'
 import Breadcrumb from './lib/breadcrumb'
 import Checkbox from './lib/checkbox'
 import Cascader from './lib/cascader'
+import DatePicker from './lib/date-picker'
 import Dropdown from './lib/dropdown'
 import Dialog from './lib/dialog'
 import Form from './lib/form'
@@ -15,8 +16,10 @@ import Messagebox from './lib/messagebox'
 import Notice from './lib/notice'
 import Pagination from './lib/pagination'
 import Radio from './lib/radio'
+import Rate from './lib/rate'
 import Select from './lib/select'
 import Switch from './lib/switch'
+import Tab from './lib/tab'
 import Table from './lib/table'
 import Tag from './lib/tag'
 import Textarea from './lib/textarea'
@@ -28,6 +31,7 @@ const components = [
   Button,
   Cascader,
   Checkbox,
+  DatePicker,
   Dialog,
   Dropdown,
   Form,
@@ -36,8 +40,10 @@ const components = [
   Loading,
   Pagination,
   Radio,
+  Rate,
   Select,
   Switch,
+  Tab,
   Table,
   Tag,
   Textarea,
@@ -77,6 +83,7 @@ export {
   Button,
   Cascader,
   Checkbox,
+  DatePicker,
   Dialog,
   Dropdown,
   Form,
@@ -85,8 +92,10 @@ export {
   Loading,
   Pagination,
   Radio,
+  Rate,
   Select,
   Switch,
+  Tab,
   Table,
   Tag,
   Textarea,
@@ -101,6 +110,7 @@ export default {
   Button,
   Cascader,
   Checkbox,
+  DatePicker,
   Dialog,
   Dropdown,
   Form,
@@ -109,8 +119,10 @@ export default {
   Loading,
   Pagination,
   Radio,
+  Rate,
   Select,
   Switch,
+  Tab,
   Table,
   Tag,
   Textarea,

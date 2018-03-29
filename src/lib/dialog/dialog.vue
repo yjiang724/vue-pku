@@ -132,7 +132,7 @@ export default {
   background-color: #fff;
   position: absolute;
   left: calc(20%);
-  top: calc(25%);
+  top: calc(5%);
   color: #2d2f33;
   border-radius: 4px;
   border: 1px solid #e6ebf5;

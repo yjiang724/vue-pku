@@ -11,7 +11,7 @@ export default {
   name: 'pkuInput',
   props: {
     message: {
-      type: String,
+      // type: String,
       default: ''
     },
     disabled: {
@@ -50,6 +50,7 @@ input {
   border-radius: 4px;
   cursor: text;
   white-space: nowrap;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   box-shadow: 0 1px 6px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.12);
   transition: all 500ms ease;
