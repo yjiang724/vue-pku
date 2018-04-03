@@ -1,7 +1,7 @@
 <template>
   <div class="cascader">
     <div class="cascader-header" @click="onShowEventHandler">
-      <span>{{ value }}</span>
+      <span v-html="value"></span>
       <span class="cascader-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <div>
@@ -20,6 +20,8 @@
         :fullRoot="root"
         :list="child_list"
         :async="async"
+        :importKey="importKey"
+        :exportKey="exportKey"
         @callback="onSelectEventHandler"></pku-cascader-item>
     </div>
   </div>
@@ -37,48 +39,7 @@ export default {
     list: {
       type: Array,
       default () {
-        return [
-          { 
-            label: 'menu1',
-            child: [
-              { 
-                label: 'menu11',
-                child: [
-                  { label: 'menu111' },
-                  { label: 'menu112' },
-                  { label: 'menu113' }
-                ]
-              },
-              { 
-                label: 'menu12',
-                child: [
-                  { 
-                    label: 'menu121',
-                    child: [
-                      { label: 'menu1211' },
-                      { label: 'menu1221' },
-                      { label: 'menu1231' }
-                    ]
-                  },
-                  { label: 'menu122' },
-                  { label: 'menu123' }
-                ]
-              },
-              { label: 'menu13' }
-            ]
-          },
-          { 
-            label: 'menu2',
-            child: [
-              { label: 'menu21' },
-              { label: 'menu22' },
-              { label: 'menu23' }
-            ]
-          },
-          { 
-            label: 'menu3'
-          }
-        ]
+        return []
       }
     },
     async: {
@@ -89,6 +50,20 @@ export default {
       type: String,
       default: 'http://127.0.0.1/API/checksystem/qa/cas.php'
     },
+    importKey: {
+      type: String,
+      default: 'quesText'
+    },
+    exportKey: {
+      type: String,
+      default: 'questionId'
+    },
+    fn: {
+      type: Function,
+      default (val) {
+        return val
+      }
+    },
     animation: {
       type: String,
       default: 'scaleY'
@@ -96,7 +71,9 @@ export default {
     params: {
       type: Object,
       default () {
-        return {}
+        return {
+          SurveyID: 123
+        }
       }
     },
     showAllLevels: {
@@ -122,8 +99,9 @@ export default {
   methods: {
     onShowEventHandler () {
       this.show = !this.show
-      this.root = ''
-      if (this.async && this.show) {
+      if (this.list.length > 0) {
+        this.child_list = this.list.concat()
+      } else if (this.async && this.show) {
         let data = this.params
         this.$http({
           method: 'POST',
@@ -143,9 +121,8 @@ export default {
         .then( res => {
           let { code, message } = res.data
           if (code === 200) {
-            // if (this.list[evt.target.dataset.key].child) {
             if (message.length > 0) {
-              this.child_list = message.concat()
+              this.child_list = this.fn(message.concat())
             }
           } else {
             throw new Error('error')
@@ -164,8 +141,6 @@ export default {
         .catch(function (err) {
           console.log(err)
         })
-      } else {
-        this.child_list = this.list.concat()
       }
     },
     // onClickEventHandler (evt) {
@@ -183,23 +158,21 @@ export default {
       this.onRednerEventHandler(val)
     },
     onRednerEventHandler (val) {
-      val = val.slice(1)
-      let tmp = val.split('_')
-      // let tmpList = this.list.concat()
-      // tmp = tmp.map(item => {
-      //   let head =  tmpList[item].label
-      //   tmpList = tmpList[item].child
-      //   return head
-      // })
+      let {root, value} = val
+      root = root.slice(1)
+      let tmp = root.split('_')
       this.root = ''
+      this.cnroot = ''
       this.child_list = []
       this.show = false
-      if (this.showAllLevels) {
+      if (value) {
+        this.value = val.full.substr(1, val.full.length)
+      } else if (this.showAllLevels) {
         this.value = tmp.join('/')
       } else {
         this.value = tmp[tmp.length - 1]
       }
-      this.$emit('callback', tmp.join('/'))
+      this.$emit('callback', tmp[tmp.length - 1])
     }
   },
   components: {
@@ -252,6 +225,12 @@ export default {
 }
 .cascader-header span {
   padding: 0 6px;
+  white-space: pre-line;
+  width: calc(100% - 100px);
+  /* overflow-y: hidden; */
+  /* text-overflow: ellipsis; */
+  height: 18px;
+  line-height: 18px;
 }
 .cascader-icon {
   position: absolute;

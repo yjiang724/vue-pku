@@ -1,14 +1,14 @@
 <template>
-  <div class="cascader-item" :style="{ left: leftStyle}">
+  <div class="cascader-item" :style="{ left: leftStyle, width: '200px'}">
     <transition name="fade">
       <ul class="cascader-droplist-after" 
         v-show="show"
         @click="onClickEventHandler">
         <li v-for="(item, $id) in list" v-if="item.child" v-bind:data-key="$id">
-          {{ item.label }} <i class="fa fa-angle-right" aria-hidden="true"></i>
+          {{ item[importKey] }} <i class="fa fa-angle-right" aria-hidden="true"></i>
         </li>
         <li v-bind:data-key="$id" v-else>
-          {{ item.label }}
+          {{ item[importKey] }}
         </li>
       </ul>
     </transition>
@@ -16,8 +16,11 @@
       :rootShow="rootShow"
       :rank="rank + 1"
       :fullRoot="root"
+      :cnRoot="cn"
       :list="child_list"
       :async="async"
+      importKey="quesText"
+      exportKey="questionId"
       v-if="list.length > 0"
       @callback="onSelectEventHandler"></pku-cascader-item>
   </div>
@@ -31,6 +34,10 @@ export default {
       type: String,
       default: ''
     },
+    cnRoot: {
+      type: String,
+      default: ''
+    },
     rootShow: {
       type: Boolean,
       default: false
@@ -41,6 +48,23 @@ export default {
         return []
       }
     },
+    importKey: {
+      type: String,
+      default: 'name'
+    },
+    exportKey: {
+      type: String,
+      default: 'key'
+    },
+    fn: {
+      type: Function,
+      default (val) {
+        let {list} = val
+        let json = []
+        json = list.concat()
+        return json
+      }
+    },
     async: {
       type: Boolean,
       default: false
@@ -48,28 +72,11 @@ export default {
     rank: {
       type: Number,
       default: 0
-    },
-    url: {
-      type: String,
-      default: 'http://127.0.0.1/API/checksystem/qa/cas.php'
-    },
-    params: {
-      type: Object,
-      default () {
-        return {}
-      }
     }
   },
   computed:{
     leftStyle () {
       if (this.rank > 0) {
-        // let node = this.$el
-        // while (!node.classList.contains('cascader')) {
-        //   node = node.parentNode
-        // }
-        // console.log(this, this.$el)
-        // console.log(getComputedStyle(node).width)
-        // getComputedStyle(temp1.$el.parentNode.parentNode.parentNode).width
         return this.left
       } else {
         return '0px'
@@ -81,6 +88,7 @@ export default {
       show: false,
       child_list: [],
       root: this.fullRoot,
+      cn: this.cnRoot,
       left: '0px'
     }
   },
@@ -107,6 +115,9 @@ export default {
     fullRoot (val) {
       this.root = val
       this.child_list = []
+    },
+    cnRoot (val) {
+      this.cn = val
     }
   },
   methods: {
@@ -115,7 +126,8 @@ export default {
         evt = evt.parentNode
       }
       let num = evt.target.dataset.key
-      this.root = this.fullRoot + '_' + this.list[num].label
+      this.root = this.fullRoot + '_' + this.list[num][this.exportKey]
+      this.cn = this.cnRoot + '_' + this.list[num][this.importKey]
       if (!this.async) {
         if (this.list[num].child) {
           this.child_list = this.list[num].child.concat()
@@ -144,7 +156,7 @@ export default {
             let { code, message } = res.data
             if (code === 200) {
               if (this.list[num].child) {
-                this.child_list = message.concat()
+                this.child_list = this.fn(message)
               }
             } else {
               throw new Error('error')
@@ -154,7 +166,11 @@ export default {
             console.log('w', err)
           })
         } else {
-          this.$emit('callback', this.root)
+          this.$emit('callback', {
+            root: this.root,
+            full: this.cn,
+            value: this.list[num][this.importKey]
+          })
         }
       }
     },

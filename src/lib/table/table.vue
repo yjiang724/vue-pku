@@ -1,18 +1,18 @@
 <template>
   <div class="table">
     <div :class="{'table-wrapper': true, 'table-scroll': scroll}">
-      <table>
+      <table :style="{width: resize ? '100%' : 'unset'}">
         <thead>
           <tr>
-            <th v-if="checkbox"></th>
-            <th v-for="val in menu">
+            <th v-if="checkbox" style="width: 80px"><pku-checkbox ref="checkAll"  value="" @click.native="onCheckAllEventHandler()"></pku-checkbox></th>
+            <th v-if="method" style="width: 180px">操作</th>
+            <th v-for="(val, id) in menu" :style="{width: cssWidth ? cssWidth[id] : 'unset'}">
               {{val.name}}
               <span class="table-sort" @click="onSortBy($event, val.key)" data-asc="false" v-show="val.key !== 'checkbox'">
                 <i class="fa fa-sort-asc" aria-hidden="true"></i>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
               </span>
             </th>
-            <th v-if="method">操作</th>
           </tr>
         </thead>
         <transition-group
@@ -28,9 +28,6 @@
             <td v-if="checkbox">
                 <pku-checkbox ref="mustUncheck"  value="" @callback="onCheckEventHandler(item['id'])"></pku-checkbox>
             </td>
-            <td v-for="(val, id) in menu" :title="item[val.key]">
-                {{item[val.key]}}
-            </td>
             <td v-if="method" class="methods">
               <pku-dropdown 
                 selected="操作"
@@ -43,6 +40,9 @@
                   @callback="onMethodEventHandler($event, item['id'])"></pku-cascader> -->
               <!-- <span v-for="(val, $id_method) in methodGroup" @click="onMethodEventHandler($id_method, item['id'])"><a>{{ val }}</a></span> -->
             </td>
+            <td v-for="(val, id) in menu" :title="item[val.key]">
+                {{item[val.key]}}
+            </td>
           </tr>
           </transition-group>
         </tbody>
@@ -53,6 +53,7 @@
         v-if="pagination" 
         @clickEvent="onClickEventHandler"
         @callback="renderdata"
+        @clearCheckList="onClearEventHandler"
         :rawdata="tableData"
         :lens="lens"
         :tolen="tolen"
@@ -66,6 +67,12 @@
 export default {
   name: 'pkuTable',
   props: {
+    cssWidth: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
     checkbox: {
       type: Boolean,
       default: false
@@ -75,6 +82,10 @@ export default {
       default: false
     },
     refresh: {
+      type: Boolean,
+      default: false
+    },
+    resize: {
       type: Boolean,
       default: false
     },
@@ -151,7 +162,6 @@ export default {
       } else {
         this.tableData = val
       }
-      // this.$refs.c1.childMethod(); 
     },
     tableData (val) {
       if (this.pagination === false) {
@@ -165,6 +175,31 @@ export default {
     }
   },
   methods: {
+    onCheckAllEventHandler () {
+      if (JSON.parse(this.checkboxList).length < this.currentPageData.length) {
+        this.checkboxList = '[]'
+        this.$refs.mustUncheck.forEach(function (item) {
+          item.unCheck()
+          item.onCheck()
+        })
+      } else {
+        this.checkboxList = '[]'
+        this.$refs.mustUncheck.forEach(function (item) {
+          item.unCheck()
+        })
+      }
+      let tmp = JSON.parse(this.checkboxList)
+      this.$emit('checkEvent', tmp)
+    },
+    onClearEventHandler () {
+      this.checkboxList = '[]'
+      this.$refs.checkAll.unCheck()
+      if (this.$refs.mustUncheck) {
+        this.$refs.mustUncheck.forEach(function (item) {
+          item.unCheck()
+        })
+      }
+    },
     onCheckEventHandler (id) {
       let tmp = JSON.parse(this.checkboxList)
       if (tmp.indexOf(id) === -1) {
@@ -173,6 +208,11 @@ export default {
       } else {
         tmp.splice(tmp.indexOf(id), 1)
         this.checkboxList = JSON.stringify(tmp)
+      }
+      if (tmp.length === this.currentPageData.length) {
+        this.$refs.checkAll.$data.checked = true
+      } else {
+        this.$refs.checkAll.$data.checked = false
       }
       this.$emit('checkEvent', tmp)
     },
@@ -271,7 +311,7 @@ export default {
     min-height: 70px;
   }
   table th {
-    width: 180px;
+    // width: 120px;
   }
   .table table thead {
     background-color: #f5f7fa;
@@ -293,6 +333,7 @@ export default {
   table td:not(.methods) {
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
   }
   .table-sort {
     position: relative;
@@ -341,7 +382,7 @@ export default {
     position: relative;
     max-width: 100%;
     min-width: 100%;
-    width: 100%;
+    // width: 100%;
     margin: 0 0 100px;
     border-collapse: collapse;
     table-layout: fixed;

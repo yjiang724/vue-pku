@@ -20,6 +20,49 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.10.1 beta 4/3/2018
+    - add `<pku-edit>`
+        - 增加编辑组件
+    - add `<pku-tooltip>`
+        - 增加信息提示组件
+    - add `<pku-tab>`
+        - 增加切换内容组件
+    - add `<pku-data-picker>`
+        - 增加时间选择器组件
+    - add `<pku-rate>`
+        - 增加评分组件
+    - update `<pku-dialog>`
+        - 修改组件的默认宽度
+    - update `<pku-button>`
+        - 修改默认宽度
+        - 点击时返回监听结果
+    - update `<pku-dropdown>`
+        - 修改默认宽度
+        - 添加下拉按钮组的分割线
+    - update `<pku-form-item>`
+        - 修改组件的默认字体 Weight
+    - update `<pku-input>`
+        - 监听 input 的输入状态
+        - 取消默认值的类型
+    - update `<pku-messagebox>`
+        - 点击事件可用在 `$alert` 事件中
+    - update `<pku-select>`
+        - 增加 props 属性 html，开启后可以在下拉列表中对 html 代码进行解析
+        - 添加 reset 方法，可以初始化显示的内容
+        - 修改了选择框的样式
+    - update `<pku-switch>`
+        - 添加 disabled 属性
+        - 修改 props 属性 value 为 message，并设置默认类型为 String
+    - update `<pku-table>`
+        - 增加 props 属性 scroll，开启后表格可以在 X 轴开启滚动条
+        - 增加当前页的全选功能
+        - 增加 props 属性 [resize, cssWidth]，可以对表格的每一栏固定宽度
+    - update `<pku-textarea>`
+        - 增加输入事件的监听事件
+    - update `<pku-radio>`
+        - 为圆点增加选中事件
+    - update `<pku-pagination>`
+        - 页面跳转时，向上级组件发起清空当前选中事件的命令
 - 0.9.3 beta 3/7/2018
     - update `<pku-input>`
         - 添加输入框监听事件

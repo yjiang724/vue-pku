@@ -7,6 +7,7 @@ import Cascader from './lib/cascader'
 import DatePicker from './lib/date-picker'
 import Dropdown from './lib/dropdown'
 import Dialog from './lib/dialog'
+import Edit from './lib/edit'
 import Form from './lib/form'
 import FormItem from './lib/form-item'
 import Header from './lib/header'
@@ -21,6 +22,7 @@ import Select from './lib/select'
 import Switch from './lib/switch'
 import Tab from './lib/tab'
 import Table from './lib/table'
+import Tooltip from './lib/tooltip'
 import Tag from './lib/tag'
 import Textarea from './lib/textarea'
 import axios from 'axios'
@@ -34,6 +36,7 @@ const components = [
   DatePicker,
   Dialog,
   Dropdown,
+  Edit,
   Form,
   Header,
   Input,
@@ -46,6 +49,7 @@ const components = [
   Tab,
   Table,
   Tag,
+  Tooltip,
   Textarea,
   FormItem
 ]
@@ -62,6 +66,7 @@ const install = function(Vue, opts = {}) {
   Vue.prototype.$text = Messagebox.text
   Vue.prototype.$notice = Notice
   Vue.prototype.$http = axios
+  Vue.prototype.$tooltip = Tooltip
   // Object.keys(components).forEach(key => Vue.component(key, components[key]));
 }
 
@@ -86,6 +91,7 @@ export {
   DatePicker,
   Dialog,
   Dropdown,
+  Edit,
   Form,
   Header,
   Input,
@@ -98,6 +104,7 @@ export {
   Tab,
   Table,
   Tag,
+  Tooltip,
   Textarea,
   FormItem
 }
@@ -113,6 +120,7 @@ export default {
   DatePicker,
   Dialog,
   Dropdown,
+  Edit,
   Form,
   Header,
   Input,
@@ -125,6 +133,7 @@ export default {
   Tab,
   Table,
   Tag,
+  Tooltip,
   Textarea,
   FormItem
 }

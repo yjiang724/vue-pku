@@ -2,7 +2,8 @@
   <div class="select">
     <div class="select-header" :class="{'select-noborder': !border, 'select-disabled': disabled}" @click="onShowEventHandler">
       <span class="select-label" v-if="label"> {{ label }} </span>
-      <span class="select-content">{{ value || '请选择' }}</span>
+      <span class="select-content" v-if="html" v-html="value || '请选择'"></span>
+      <span class="select-content" v-else>{{ value || '请选择' }}</span>
       <span class="select-icon"><i class="fa fa-angle-down" :class="{'fa-angle-active': show}" aria-hidden="true"></i></span>
     </div>
     <transition name="fade">
@@ -78,6 +79,9 @@ export default {
     }
   },
   methods: {
+    reset () {
+      this.value = this.selected
+    },
     onShowEventHandler () {
       if (!this.disabled) {
         this.show = !this.show
@@ -159,14 +163,14 @@ export default {
   // vertical-align: middle;
 }
 .select-header span.select-content {
-  white-space: pre-line;
-  width: calc(100% - 100px);
-  // display: inline-block;
-  overflow-y: hidden;
-  text-overflow: ellipsis;
+  display: inline-block;
+  width: calc(100% - 50px);
   height: 18px;
   line-height: 18px;
-  // vertical-align: middle;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 .select-is-labeled.select-droplist::before {
   left: 70px;
@@ -254,5 +258,39 @@ li.select-disabled:hover {
 .translateDown.fade-enter, .translateDown.fade-leave-to {
   opacity: 0;
   transform: translateY(100px);
+}
+
+.select-animation {
+}
+.select-animation::after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 20%;
+  height: 2px;
+  border-radius: 6px;
+  animation: mymove 1s infinite;
+  -webkit-animation: mymove 1s infinite;
+  animation-direction: alternate;
+  -webkit-animation-direction: alternate;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  background: -webkit-linear-gradient(left, #FFB5B5, #FF0000, #FFB5B5);
+  background: -o-linear-gradient(right, #FFB5B5, #FF0000, #FFB5B5);
+  background: -moz-linear-gradient(right, #FFB5B5, #FF0000, #FFB5B5);
+  background: linear-gradient(to right, #FFB5B5, #FF0000, #FFB5B5);
+}
+.select-animation .select-header {
+  cursor: not-allowed;
+  border: none;
+}
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 80%;}
+}
+
+@-webkit-keyframes mymove {
+  from {left:0px;}
+  to {left: 80%;}
 }
 </style>

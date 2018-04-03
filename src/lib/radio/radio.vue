@@ -8,14 +8,14 @@
       v-if="importKey.length > 0"
       aria-checked="true">
       <span class="radio-input">
-        <span class="radio-arrow"></span>
+        <span class="radio-arrow" @click="onCheck($event, $id)"></span>
         <input type="radio">
       </span>
       <span class="radio-label" @click="onCheck($event, $id)">{{ item[importKey] }}</span>
     </label>
     <label v-else>
         <span class="radio-input">
-        <span class="radio-arrow"></span>
+        <span class="radio-arrow" @click="onCheck($event, $id)"></span>
         <input type="radio">
       </span>
       <span class="radio-label" @click="onCheck($event, $id)">{{ item }}</span>
@@ -56,9 +56,13 @@ export default {
     onCheck (evt, index) {
       if (!this.disabled) {
         this.value = index
-        if (evt.target.dataset.key) {
-            this.valueKey = evt.target.dataset.key
-            this.$emit('callback', evt.target.dataset.key)
+        evt = evt.target
+        while (evt.tagName !== 'LABEL') {
+          evt = evt.parentNode
+        }
+        if (evt.dataset.key) {
+            this.valueKey = evt.dataset.key
+            this.$emit('callback', evt.dataset.key)
         } else {
             this.$emit('callback', this.value)
         }

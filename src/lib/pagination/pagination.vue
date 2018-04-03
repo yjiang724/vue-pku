@@ -79,6 +79,7 @@ export default {
       this.$emit('clickEvent', id)
     },
     onSelect (val) {
+      this.$emit('clearCheckList')
       this.len = val
     },
     getPages () {
@@ -103,6 +104,7 @@ export default {
       this.$emit('callback', newData)
     },
     onClickPage (idx) {
+      this.$emit('clearCheckList')
       this.activeNum = idx
       this.pages = []
       if (this.pageNum < this.pageLen) {
@@ -129,11 +131,13 @@ export default {
       }
     },
     onFirstPage () {
+      this.$emit('clearCheckList')
       this.activeNum = 1
       this.gap = 0
       this.getPages()
     },
     onPrevPage () {
+      this.$emit('clearCheckList')
       if (this.activeNum <= 1) {
         return
       }
@@ -147,6 +151,7 @@ export default {
       }
     },
     onNextPage () {
+      this.$emit('clearCheckList')
       if (this.activeNum >= this.pageNum) {
         return
       }
@@ -160,6 +165,7 @@ export default {
       }
     },
     onLastPage () {
+      this.$emit('clearCheckList')
       this.activeNum = this.pageNum
       this.pages = []
       if (this.pageNum < this.pageLen) {
