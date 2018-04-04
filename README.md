@@ -20,6 +20,14 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.10.2 beta 4/4/2018
+    - update `<pku-dialog>`
+        - 关闭该组件后取消 SLOT 中复选框的选中状态
+    - update `<pku-pagination>`
+        - 修改导航栏输入框的样式
+    - update `<pku-table>`
+        - 修改表格中全选框的显示方式
+        - 修改清除选中方法
 - 0.10.1 beta 4/3/2018
     - add `<pku-edit>`
         - 增加编辑组件

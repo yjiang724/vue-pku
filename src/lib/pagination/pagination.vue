@@ -248,11 +248,11 @@ export default {
   float: left;
 }
 .pagination-input input {
-  line-height: 40px;
+  line-height: 24px;
   border: 1px solid #d8dce5;
   font-size: 14px;
   border-radius: 6px;
-  height: 30px;
+  height: 24px;
   padding: 4px 12px;
   transition: border-color .2s cubic-bezier(.645,.045,.355,1);
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1);
@@ -321,5 +321,8 @@ export default {
 .forbidden {
   color: #ccc !important;
   cursor: not-allowed !important;
+}
+.pagination-refresh >>> button {
+  margin-right: 10px;
 }
 </style>

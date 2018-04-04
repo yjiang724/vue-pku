@@ -4,7 +4,7 @@
       <table :style="{width: resize ? '100%' : 'unset'}">
         <thead>
           <tr>
-            <th v-if="checkbox" style="width: 80px"><pku-checkbox ref="checkAll"  value="" @click.native="onCheckAllEventHandler()"></pku-checkbox></th>
+            <th v-if="checkbox" style="width: 80px"><pku-checkbox ref="checkAll"  value="" @click.native="onCheckAllEventHandler()" v-show="currentPageData.length > 0"></pku-checkbox></th>
             <th v-if="method" style="width: 180px">操作</th>
             <th v-for="(val, id) in menu" :style="{width: cssWidth ? cssWidth[id] : 'unset'}">
               {{val.name}}
@@ -193,7 +193,9 @@ export default {
     },
     onClearEventHandler () {
       this.checkboxList = '[]'
-      this.$refs.checkAll.unCheck()
+      if (this.$refs.checkAll) {
+        this.$refs.checkAll.unCheck()
+      }
       if (this.$refs.mustUncheck) {
         this.$refs.mustUncheck.forEach(function (item) {
           item.unCheck()
