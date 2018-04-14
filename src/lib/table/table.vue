@@ -102,7 +102,7 @@ export default {
     lens: {
       type: Array,
       default () {
-        return [5, 10, 15]
+        return [5, 10, 30, 50, 100]
       }
     },
     pageLen: {
@@ -201,6 +201,7 @@ export default {
           item.unCheck()
         })
       }
+      this.$emit('clearBtnGroup')
     },
     onCheckEventHandler (id) {
       let tmp = JSON.parse(this.checkboxList)

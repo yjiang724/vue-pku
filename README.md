@@ -20,6 +20,12 @@ Vue.use(pkue)
 ```
 
 # Version
+- 0.10.3 beta 4/13/2018
+	- update `<pku-textarea>`
+		- 增加了对属性 `message` 的监听
+	- update `<pku-table>`
+		- 修改了表格默认的显示行数
+		- 增加了切换页面数据，checkbox 按钮的显示问题
 - 0.10.2 beta 4/4/2018
     - update `<pku-dialog>`
         - 关闭该组件后取消 SLOT 中复选框的选中状态
