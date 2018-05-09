@@ -7,6 +7,7 @@
         <li><a href="http://mail.pku.edu.cn/" target="_blank">邮箱</a></li>
         <li><a href="http://bbs.pku.edu.cn/" target="_blank">BBS</a></li>
         <li><a href="http://www.lib.pku.edu.cn/portal/" target="_blank">图书馆</a></li>
+        <li><a href="http://10.8.8.88:8080/Survey/views/main/UserLogout.action">登出</a></li>
         <li><span>欢迎您！</span> <span>{{ user }}</span></li>
       </ul>
     </div>

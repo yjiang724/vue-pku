@@ -2,9 +2,9 @@
   <div class="checkbox">
     <label role="checkbox" :class="{'is-checked': checked, 'disabled': disabled}" aria-checked="true">
       <span class="checkbox-input">
-        <span class="checkbox-arrow" @click="onCheck"></span>
+        <span class="checkbox-arrow" @click.self="onCheck"></span>
       </span>
-      <span class="checkbox-label" @click="onCheck">{{value}}</span>
+      <span class="checkbox-label">{{value}}</span>
     </label>
   </div>
 </template>

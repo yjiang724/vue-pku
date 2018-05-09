@@ -1,7 +1,7 @@
 <template>
-  <form :class="{ inline: inline }">
+  <div :class="{ inline: inline }">
     <slot></slot>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -16,16 +16,16 @@ export default {
 }
 </script>
 <style scoped>
-form.inline >>> section label {
+div.inline >>> section label {
   display: inline;
 }
-form.inline >>> section input {
+div.inline >>> section input {
   width: 70%;
 }
-form.inline >>> section .select {
+div.inline >>> section .select {
   width: 70%;
 }
-form.inline >>> section textarea {
+div.inline >>> section textarea {
   width: 70%;
 }
 </style>

@@ -68,7 +68,11 @@ export default {
         if (_this.fixed === true) {
           let height0 = getComputedStyle(el.children[0].children[0], null)['height'].slice(0, -2)
           let height1 = getComputedStyle(el.children[0].children[1], null)['height'].slice(0, -2)
-          el.children[0].style.height = (130 + Number(height0) + Number(height1)) + 'px'
+          // el.children[0].style.height = (130 + Number(height0) + Number(height1)) + 'px'
+          el.children[0].style.height = '100%'
+          // console.log(getComputedStyle(el.children[0], null)['height'])
+          // let tmpHeight = el.children[0].getBoundingClientRect().height
+          // el.children[0].style.height = tmpHeight + 300 + 'px'
         }
         done()
       }, 50)
@@ -77,7 +81,7 @@ export default {
     afterEnter: function (el) {
       if (this.fixed === true) {
         setTimeout(function () {
-          el.children[0].style.overflow = 'visible'
+          el.children[0].style.overflow = 'auto'
         }, 800)
       }
     },
@@ -103,9 +107,11 @@ export default {
     },
     onClose (flag) {
       if (this.$children[0] && this.$children[0].checkboxList) {
-        // this.$children[0].$refs.checkAll.unCheck()
+        this.$children[0].onClearEventHandler()
         this.$children[0].checkboxList = '[]'
-        this.$children[0].$refs.checkAll.unCheck()
+        if (this.$children[0].$refs.checkAll) {
+          this.$children[0].$refs.checkAll.unCheck()
+        }
       }
       this.$emit('closeEvent')
     }

@@ -1,6 +1,6 @@
 <template>
   <div class='breadcrumb'>
-    <div v-for="(item, $index) in value" :class="{'active': $index === value.length - 1, 'separator': separator === 'arrow'}">{{item}}</div>
+    <div v-for="(item, $index) in value" :class="{'active': $index === value.length - 1, 'separator': separator === 'arrow'}" @click="func[$index]">{{item}}</div>
   </div>
 </template>
 
@@ -16,6 +16,17 @@ export default {
       type: Array,
       default () {
         return ['首页', '子页面一', '子页面二']
+      }
+    },
+    func: {
+      type: Array,
+      default () {
+        return [
+          () => {},
+          () => {},
+          () => {},
+          () => {}
+        ]
       }
     }
   }
@@ -38,12 +49,12 @@ export default {
 }
 .breadcrumb > div:hover {
   color: #0091EA;
-  cursor: text;
+  cursor: pointer;
 }
 .breadcrumb > div.active {
   font-weight: 700;
   color: #2d2f33;
-  cursor: text;
+  cursor: pointer;
 }
 .breadcrumb > div + div::before{
   margin: 0 9px;

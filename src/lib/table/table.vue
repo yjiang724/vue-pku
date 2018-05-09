@@ -4,7 +4,7 @@
       <table :style="{width: resize ? '100%' : 'unset'}">
         <thead>
           <tr>
-            <th v-if="checkbox" style="width: 80px"><pku-checkbox ref="checkAll"  value="" @click.native="onCheckAllEventHandler()" v-show="currentPageData.length > 0"></pku-checkbox></th>
+            <th v-if="checkbox" style="width: 80px"><pku-checkbox ref="checkAll"  value="" @click.native="onCheckAllEventHandler($event)" v-show="currentPageData.length > 0"></pku-checkbox></th>
             <th v-if="method" style="width: 180px">操作</th>
             <th v-for="(val, id) in menu" :style="{width: cssWidth ? cssWidth[id] : 'unset'}">
               {{val.name}}
@@ -175,21 +175,23 @@ export default {
     }
   },
   methods: {
-    onCheckAllEventHandler () {
-      if (JSON.parse(this.checkboxList).length < this.currentPageData.length) {
-        this.checkboxList = '[]'
-        this.$refs.mustUncheck.forEach(function (item) {
-          item.unCheck()
-          item.onCheck()
-        })
-      } else {
-        this.checkboxList = '[]'
-        this.$refs.mustUncheck.forEach(function (item) {
-          item.unCheck()
-        })
+    onCheckAllEventHandler (event) {
+      if (event.target.tagName === 'SPAN') {
+        if (JSON.parse(this.checkboxList).length < this.currentPageData.length) {
+          this.checkboxList = '[]'
+          this.$refs.mustUncheck.forEach(function (item) {
+            item.unCheck()
+            item.onCheck()
+          })
+        } else {
+          this.checkboxList = '[]'
+          this.$refs.mustUncheck.forEach(function (item) {
+            item.unCheck()
+          })
+        }
+        let tmp = JSON.parse(this.checkboxList)
+        this.$emit('checkEvent', tmp)
       }
-      let tmp = JSON.parse(this.checkboxList)
-      this.$emit('checkEvent', tmp)
     },
     onClearEventHandler () {
       this.checkboxList = '[]'

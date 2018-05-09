@@ -5,7 +5,7 @@
     </div>
     <div class="pagination-refresh">
       <pku-button class="btn-default" value="导出" @callback="clickEvent" icon="floppy-o" v-if="exportdata"></pku-button>
-      <pku-button class="btn-default" v-for="(callback, id) in btnGroup" v-if="id < 3" @callback="clickEvent(id)" :value="callback"></pku-button>
+      <pku-button class="btn-default" v-for="(callback, id) in btnGroup" v-if="id < 5" @callback="clickEvent(id)" :value="callback"></pku-button>
     </div>
     <div class="pagination-right">
       <ul class="pagination-list">
