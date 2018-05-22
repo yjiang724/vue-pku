@@ -196,10 +196,8 @@ export default {
       }
     },
     onClearEventHandler (evt) {
-      if (evt) {
-        this.csActiveNum = evt.activeNum
-        this.csLen = evt.len
-      }
+      this.csActiveNum = evt.activeNum
+      this.csLen = evt.len
       this.checkboxList = '[]'
       if (this.$refs.checkAll) {
         this.$refs.checkAll.unCheck()

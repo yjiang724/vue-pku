@@ -164,7 +164,7 @@ export default {
 }
 .select-header span.select-content {
   display: inline-block;
-  width: calc(100% - 100px);
+  // width: calc(100% - 150px);
   height: 18px;
   line-height: 18px;
   white-space: pre;

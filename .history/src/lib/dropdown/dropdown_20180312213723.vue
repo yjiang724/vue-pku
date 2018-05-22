@@ -60,13 +60,9 @@ export default {
       default: 'scaleY'
     }
   },
-  computed: {
-    disableBtnClass () {
-      return this.list[0].disabled ? 'btn-disabled' : ''
-    }
-  },
   data () {
     return {
+      disableBtnClass: this.list[0].disabled ? 'btn-disabled' : '',
       sizeBtnClass: 'btn-' + this.size,
       defaultClass: 'dropdown',
       sizeClass: 'dropdown-' + this.size,

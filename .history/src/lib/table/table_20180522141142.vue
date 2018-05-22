@@ -32,7 +32,7 @@
               <pku-dropdown 
                 selected="操作"
                 size="sm"
-                :list="methodGroup[$id + csLen * (csActiveNum - 1)]"
+                :list="methodGroup[$id]"
                 @callback="onMethodEventHandler($event, item['id'])"></pku-dropdown>
               <!-- <pku-cascader
                   selected="操作"
@@ -142,8 +142,6 @@ export default {
   },
   data () {
     return {
-      csActiveNum: 1,
-      csLen: 10,
       currentPageData: [],
       tableData: this.rawdata,
       checkboxList: '[]'
@@ -196,10 +194,8 @@ export default {
       }
     },
     onClearEventHandler (evt) {
-      if (evt) {
-        this.csActiveNum = evt.activeNum
-        this.csLen = evt.len
-      }
+      this.csActiveNum = evt.activeNum
+      this.csLen = evt.len
       this.checkboxList = '[]'
       if (this.$refs.checkAll) {
         this.$refs.checkAll.unCheck()

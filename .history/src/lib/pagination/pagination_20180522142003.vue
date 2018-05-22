@@ -131,12 +131,13 @@ export default {
       this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
     },
     onFirstPage () {
+      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
       this.activeNum = 1
       this.gap = 0
       this.getPages()
-      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
     },
     onPrevPage () {
+      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
       if (this.activeNum <= 1) {
         return
       }
@@ -148,9 +149,9 @@ export default {
       } else {
         this.gap--
       }
-      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
     },
     onNextPage () {
+      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
       if (this.activeNum >= this.pageNum) {
         return
       }
@@ -162,9 +163,9 @@ export default {
       } else {
         this.gap++
       }
-      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
     },
     onLastPage () {
+      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
       this.activeNum = this.pageNum
       this.pages = []
       if (this.pageNum < this.pageLen) {
@@ -179,7 +180,6 @@ export default {
         this.gap = this.pageLen - 1
       }
       this.pages.reverse()
-      this.$emit('clearCheckList', {activeNum: this.activeNum, len: this.len})
     }
   },
   mounted () {
